@@ -1,0 +1,253 @@
+$light-xl : #FFF;
+$light-l: #F6F6F6;
+$light-s: #FAFAFA;
+$dark-s: #CDCDCD;
+$darl-m: #B2B2B2;
+$dark-l: #545454;
+$dark-xl: #4C4C4C;
+$dark-2xl: #444444;
+$dark-3xl: #292929;
+$primary: #F1CDB3;
+$primary-light: #FDDCC4;
+$arial: Arial, sans-serif;
+$georgia: Georgia, serif;
+
+*, button {
+    box-sizing: border-box;
+    font: {
+        family: $georgia;
+        weight: 400;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+.wrapper {
+    width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+    border-left: 1px solid black;
+}
+
+.header {
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 60px;
+        background-color: transparent;
+    }
+}
+
+.title {
+    margin: 0 0 8px 0;
+    color: $primary;
+    font-size: 32px;
+    line-height: 35px;
+    letter-spacing: 0.06em;
+}
+
+.sub-title {
+    font: {
+        family: $arial;
+        size: 13px;
+    }
+    color: $light-xl;
+    line-height: 15px;
+    letter-spacing: 0.1em;
+    margin-left: 4px;
+}
+
+.nav-list {
+    display: flex;
+    .nav-item {
+        margin-left: 36px;
+        .nav-link {
+            color: $dark-s;
+            font-family: $arial;
+            font-size: 15px;
+            line-height: 24px;
+            padding-bottom: 4px;
+        }
+        .nav-link.active {
+            color: $light-s;
+            border-bottom: 3px solid $primary;
+        }
+    }
+}
+
+.start-screen {
+    background: radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #211F20 100%);
+    margin-top: -125px;
+    padding-top: 125px;
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.not-only-content {
+    width: 39%;
+    margin-top: 185px;
+    
+    .not-only-title {
+        color: $light-xl;
+        font-size: 44px;
+        line-height: 130%;
+        width: 310px;
+    }
+    .not-only-text {
+        color: $dark-s;
+        font-family: $arial;
+        font-size: 15px;
+        line-height: 160%;
+        padding-top: 4px;
+    }
+    .not-only-btn {
+        background: $primary;
+        border: none;
+        border-radius: 100px;
+        width: 207px;
+        height: 52px;
+        margin-top: 27px;
+        color: $dark-3xl;
+        font-size: 17px;
+        line-height: 130%;
+        letter-spacing: 0.06em;
+    }
+}
+
+.not-only-img {
+    width: 698px;
+    margin-top: 58px;
+}
+
+.main-title {
+    color: $dark-l;
+    font-size: 35px;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    margin: 0;
+}
+
+.about {
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 120px;
+        padding: 80px 0 88px;
+    }
+}
+
+.about-content {
+    width: 430px;
+    .main-title {
+        width: 95%;
+        margin: 15px 0 24px;
+    }
+    .about-text {
+        font-family: $arial;
+        font-size: 15px;
+        line-height: 160%;
+        color: $dark-xl;
+        margin-bottom: 25px;
+    }
+}
+
+.friends, .donation {
+    background-color: $light-l;
+}
+
+.friends {
+    .wrapper {
+        padding: 80px 0 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 60px;
+        .main-title {
+            text-align: center;
+        }
+    }
+}
+
+.slider {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 53px;
+}
+
+.slider-btn-left,
+.slider-btn-right {
+    width: 52px;
+    height: 52px;
+    border: 2px solid $primary;
+    box-sizing: border-box;
+    border-radius: 100px;
+    background-color: transparent;
+}
+
+.icon-arrow-left,
+.icon-arrow-right {
+    width: 14px;
+    height: 11px;
+}
+
+.slider-cards {
+    display: flex;
+    gap: 90px;
+}
+
+.slider-card {
+    height: 435px;
+    background-color: $light-s;
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.slider-card-title {
+    margin: 0;
+    color: $dark-l;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: 0.06em;
+}
+
+.slider-card-btn {
+    width: 187px;
+    height: 52px;
+    border: 2px solid $primary;
+    background: transparent;
+    box-sizing: border-box;
+    border-radius: 100px;
+    color: $dark-3xl;
+    font-size: 17px;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+}
+
+.slider-photo {
+    border-radius: 9px 9px 0 0;
+}
+
+.get-know-btn {
+    width: 261px;
+    height: 52px;
+    background: $primary;
+    border: none;
+    border-radius: 100px;
+    color: $dark-3xl;
+    font-size: 17px;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+}
