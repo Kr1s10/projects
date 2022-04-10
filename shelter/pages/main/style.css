@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 *, button {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -17,7 +21,6 @@ li {
   width: 1280px;
   margin: 0 auto;
   padding: 0 40px;
-  border-left: 1px solid black;
 }
 
 .header .wrapper {
@@ -64,6 +67,8 @@ li {
   font-size: 15px;
   line-height: 24px;
   padding-bottom: 4px;
+  -webkit-transition: .3s;
+  transition: .3s;
 }
 
 .nav-list .nav-item .nav-link.active {
@@ -71,8 +76,12 @@ li {
   border-bottom: 3px solid #F1CDB3;
 }
 
+.nav-list .nav-item .nav-link:hover {
+  color: #FAFAFA;
+}
+
 .start-screen {
-  background: radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #211F20 100%);
+  background: url(../../assets/images/main/noise_trans.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #211F20 100%), #211F20;
   margin-top: -125px;
   padding-top: 125px;
 }
@@ -117,6 +126,8 @@ li {
   font-size: 17px;
   line-height: 130%;
   letter-spacing: 0.06em;
+  -webkit-transition: .5s;
+  transition: .5s;
 }
 
 .not-only-img {
@@ -208,6 +219,18 @@ li {
           box-sizing: border-box;
   border-radius: 100px;
   background-color: transparent;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.slider-btn-left:hover,
+.slider-btn-right:hover,
+.not-only-btn:hover,
+.get-know-btn:hover,
+.donation-card:hover {
+  cursor: pointer;
+  background: #FDDCC4;
+  border-color: #FDDCC4;
 }
 
 .icon-arrow-left,
@@ -238,6 +261,21 @@ li {
       -ms-flex-align: center;
           align-items: center;
   gap: 30px;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.slider-card:hover {
+  cursor: pointer;
+  background-color: #FFF;
+  -webkit-box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+          box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+}
+
+.slider-card:hover button {
+  cursor: pointer;
+  background: #FDDCC4;
+  border-color: #FDDCC4;
 }
 
 .slider-card-title {
@@ -260,6 +298,8 @@ li {
   font-size: 17px;
   line-height: 130%;
   letter-spacing: 0.06em;
+  -webkit-transition: .5s;
+  transition: .5s;
 }
 
 .slider-photo {
@@ -276,5 +316,217 @@ li {
   font-size: 17px;
   line-height: 130%;
   letter-spacing: 0.06em;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+#help .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 80px 0 100px;
+}
+
+#help .wrapper .main-title {
+  text-align: center;
+}
+
+.help-cards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-column-gap: 120px;
+          column-gap: 120px;
+  row-gap: 53px;
+  padding: 59px 30px 0;
+}
+
+.help-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0;
+}
+
+.help-card h3 {
+  color: #545454;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  margin: 30px 0 0;
+}
+
+.icon-help-card {
+  width: 60px;
+  height: 60px;
+}
+
+.donation .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 30px;
+  padding: 80px 0 100px;
+}
+
+.donation-content {
+  width: 380px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 20px;
+}
+
+.bank {
+  font-size: 15px;
+  line-height: 110%;
+  letter-spacing: 0.06em;
+  color: #545454;
+}
+
+.donation-card {
+  background: #F1CDB3;
+  border-radius: 9px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 15px;
+  width: 350px;
+  padding: 10px 15px;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.card-number {
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: #545454;
+}
+
+.icon-donation-card {
+  width: 30px;
+  height: 23px;
+}
+
+.donation-description {
+  font-family: Arial, sans-serif;
+  font-style: italic;
+  font-size: 12px;
+  line-height: 150%;
+  color: #B2B2B2;
+  margin: 0;
+}
+
+#footer {
+  background: url(../../assets/images/main/noise_trans.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+}
+
+#footer .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 160px;
+  padding-top: 40px;
+}
+
+.footer-title {
+  color: #FFF;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+.questions-content,
+.visit-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-top: 16px;
+}
+
+.questions-content a,
+.visit-content a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.questions-content a span,
+.visit-content a span {
+  color: #F1CDB3;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+}
+
+.questions-content {
+  gap: 40px;
+}
+
+.questions-content h2 {
+  width: 279px;
+}
+
+.questions-content svg {
+  width: 40px;
+  height: 32px;
+}
+
+.map-link-first {
+  margin: 34px 0 32px;
+}
+
+.adress-first {
+  width: 260px;
+}
+
+.icon-marker {
+  width: 22px;
+  height: 32px;
 }
 /*# sourceMappingURL=style.css.map */

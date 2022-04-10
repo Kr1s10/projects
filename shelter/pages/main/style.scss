@@ -12,6 +12,10 @@ $primary-light: #FDDCC4;
 $arial: Arial, sans-serif;
 $georgia: Georgia, serif;
 
+html {
+    scroll-behavior: smooth;
+}
+
 *, button {
     box-sizing: border-box;
     font: {
@@ -32,7 +36,6 @@ li {
     width: 1280px;
     margin: 0 auto;
     padding: 0 40px;
-    border-left: 1px solid black;
 }
 
 .header {
@@ -73,16 +76,20 @@ li {
             font-size: 15px;
             line-height: 24px;
             padding-bottom: 4px;
+            transition: .3s;
         }
         .nav-link.active {
             color: $light-s;
             border-bottom: 3px solid $primary;
         }
+        .nav-link:hover {
+            color: $light-s;
+        }
     }
 }
 
 .start-screen {
-    background: radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #211F20 100%);
+    background: url(../../assets/images/main/noise_trans.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #211F20 100%), #211F20;
     margin-top: -125px;
     padding-top: 125px;
     .wrapper {
@@ -119,6 +126,7 @@ li {
         font-size: 17px;
         line-height: 130%;
         letter-spacing: 0.06em;
+        transition: .5s;
     }
 }
 
@@ -192,6 +200,17 @@ li {
     box-sizing: border-box;
     border-radius: 100px;
     background-color: transparent;
+    transition: .5s;
+}
+
+.slider-btn-left:hover,
+.slider-btn-right:hover,
+.not-only-btn:hover,
+.get-know-btn:hover,
+.donation-card:hover {
+    cursor: pointer;
+    background: $primary-light;
+    border-color: $primary-light;
 }
 
 .icon-arrow-left,
@@ -213,6 +232,18 @@ li {
     flex-direction: column;
     align-items: center;
     gap: 30px;
+    transition: .5s;
+}
+
+.slider-card:hover {
+    cursor: pointer;
+    background-color: $light-xl;
+    box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+    button {
+        cursor: pointer;
+        background: $primary-light;
+        border-color: $primary-light;
+    }
 }
 
 .slider-card-title {
@@ -234,6 +265,7 @@ li {
     font-size: 17px;
     line-height: 130%;
     letter-spacing: 0.06em;
+    transition: .5s;
 }
 
 .slider-photo {
@@ -250,4 +282,162 @@ li {
     font-size: 17px;
     line-height: 130%;
     letter-spacing: 0.06em;
+    transition: .5s;
+}
+
+#help {
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 80px 0 100px;
+        .main-title {
+            text-align: center;
+        }
+    }
+}
+
+.help-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 120px;
+    row-gap: 53px;
+    padding: 59px 30px 0;
+}
+
+.help-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    h3 {
+        color: $dark-l;
+        font-size: 20px;
+        line-height: 115%;
+        letter-spacing: 0.06em;
+        margin: 30px 0 0;
+    }
+}
+
+.icon-help-card {
+    width: 60px;
+    height: 60px;
+}
+
+.donation {
+    .wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        padding: 80px 0 100px;
+    }
+}
+
+.donation-content {
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.bank {
+    font-size: 15px;
+    line-height: 110%;
+    letter-spacing: 0.06em;
+    color: $dark-l;
+}
+
+.donation-card {
+    background: $primary;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 350px;
+    padding: 10px 15px;
+    transition: .5s;
+}
+
+.card-number {
+    font-size: 20px;
+    line-height: 115%;
+    letter-spacing: 0.06em;
+    color: $dark-l;
+}
+
+.icon-donation-card {
+    width: 30px;
+    height: 23px;
+}
+
+.donation-description {
+    font-family: $arial;
+    font-style: italic;
+    font-size: 12px;
+    line-height: 150%;
+    color: $darl-m;
+    margin: 0;
+}
+
+#footer {
+    background: url(../../assets/images/main/noise_trans.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+    .wrapper {
+        display: flex;
+        gap: 160px;
+        padding-top: 40px;
+    }
+}
+
+.footer-title {
+    color: $light-xl;
+    font-size: 35px;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    margin: 0;
+}
+
+.questions-content,
+.visit-content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 16px;
+    a {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        span {
+            color: $primary;
+            font-size: 20px;
+            line-height: 115%;
+            letter-spacing: 0.06em;
+        }
+    }
+}
+
+.questions-content {
+    h2 {
+        width: 279px;
+    }
+    gap: 40px;
+    svg {
+        width: 40px;
+        height: 32px;
+    }
+}
+
+.map-link-first {
+    margin: 34px 0 32px;
+}
+
+.adress-first {
+    width: 260px;
+}
+
+
+.icon-marker {
+    width: 22px;
+    height: 32px;
 }
