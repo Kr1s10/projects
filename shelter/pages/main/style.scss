@@ -1,3 +1,6 @@
+@import url('https://fonts.cdnfonts.com/css/georgia');
+@import url('https://fonts.cdnfonts.com/css/arial');
+
 $light-xl : #FFF;
 $light-l: #F6F6F6;
 $light-s: #FAFAFA;
@@ -18,10 +21,8 @@ html {
 
 *, button {
     box-sizing: border-box;
-    font: {
-        family: $georgia;
-        weight: 400;
-    }
+    font-family: $georgia;
+    font-weight: 400;
 }
 
 a {

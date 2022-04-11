@@ -1,0 +1,275 @@
+@import url('https://fonts.cdnfonts.com/css/georgia');
+@import url('https://fonts.cdnfonts.com/css/arial');
+
+$light-xl : #FFF;
+$light-l: #F6F6F6;
+$light-s: #FAFAFA;
+$dark-s: #CDCDCD;
+$darl-m: #B2B2B2;
+$dark-l: #545454;
+$dark-xl: #4C4C4C;
+$dark-2xl: #444444;
+$dark-3xl: #292929;
+$primary: #F1CDB3;
+$primary-light: #FDDCC4;
+$arial: Arial, sans-serif;
+$georgia: Georgia, serif;
+
+html {
+    scroll-behavior: smooth;
+}
+
+*, button {
+    box-sizing: border-box;
+    font-family: $georgia;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+h2 {
+    margin: 0;
+}
+
+.wrapper {
+    width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    background: $light-xl;
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+        padding: 30px 40px 28px;
+    }
+}
+
+.title {
+    margin: 1px 0 7px 0;
+    color: $dark-l;
+    font-size: 32px;
+    line-height: 110%;
+    letter-spacing: 0.06em;
+}
+
+.sub-title {
+    font: {
+        family: $arial;
+        size: 13px;
+    }
+    color: $dark-3xl;
+    line-height: 15px;
+    letter-spacing: 0.1em;
+    margin-left: 4px;
+}
+
+.nav-list {
+    display: flex;
+    .nav-item {
+        margin-left: 36px;
+        .nav-link {
+            color: $dark-l;
+            font-family: $arial;
+            font-size: 15px;
+            line-height: 24px;
+            padding-bottom: 4px;
+            transition: .3s;
+        }
+        .nav-link.active {
+            color: $dark-3xl;
+            border-bottom: 3px solid $primary;
+        }
+        .nav-link:hover {
+            color: $dark-3xl;
+        }
+    }
+}
+
+.friends {
+    background: $light-l;
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 45px;
+        align-items: center;
+        padding: 80px 40px 100px;
+    }
+}
+
+.main-title {
+    color: $dark-l;
+    font-size: 35px;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    text-align: center;
+    margin: 0;
+}
+
+.pets-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px 40px;
+    padding: 13px 0 15px;
+}
+
+.pet-card {
+    height: 435px;
+    background-color: $light-s;
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    transition: .5s;
+}
+
+.pet-card:hover {
+    cursor: pointer;
+    background-color: $light-xl;
+    box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+    button {
+        cursor: pointer;
+        background: $primary-light;
+        border-color: $primary-light;
+    }
+}
+
+.pet-photo {
+    border-radius: 9px 9px 0 0;
+}
+
+.pet-card-title {
+    margin: 0;
+    color: $dark-l;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: 0.06em;
+}
+
+.pet-card-btn {
+    width: 187px;
+    height: 52px;
+    border: 2px solid $primary;
+    background: transparent;
+    box-sizing: border-box;
+    border-radius: 100px;
+    color: $dark-3xl;
+    font-size: 17px;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    transition: .5s;
+}
+
+.pagination {
+    display: flex;
+    gap: 20px;
+}
+
+.pag-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 100px;
+    border: 2px solid $primary;
+    background-color: transparent;
+    font-size: 20px;
+    line-height: 115%;
+    color: $dark-3xl;
+    transition: .3s;
+}
+
+.pag-btn.active {
+    background: $primary;
+}
+
+.pag-btn.active:hover {
+    border-color: $primary;
+    background: $primary;
+    cursor: auto;
+}
+
+.pag-btn:hover {
+    background: $primary-light;
+    border-color: $primary-light;
+    cursor: pointer;
+}
+
+.pag-btn:disabled {
+    border-color: $dark-s;
+    color: $dark-s;
+}
+
+.pag-btn:disabled:hover {
+    background: transparent;
+    border-color: $dark-s;
+    cursor: auto;
+}
+
+#footer {
+    background: url(../../assets/images/main/noise_trans.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+    .wrapper {
+        display: flex;
+        gap: 160px;
+        padding-top: 40px;
+    }
+}
+
+.footer-title {
+    color: $light-xl;
+    font-size: 35px;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    margin: 0;
+}
+
+.questions-content,
+.visit-content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 16px;
+    a {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        span {
+            color: $primary;
+            font-size: 20px;
+            line-height: 115%;
+            letter-spacing: 0.06em;
+        }
+    }
+}
+
+.questions-content {
+    h2 {
+        width: 279px;
+    }
+    gap: 40px;
+    svg {
+        width: 40px;
+        height: 32px;
+    }
+}
+
+.map-link-first {
+    margin: 33px 0;
+}
+
+.adress-first {
+    width: 260px;
+}
+
+
+.icon-marker {
+    width: 22px;
+    height: 32px;
+}
