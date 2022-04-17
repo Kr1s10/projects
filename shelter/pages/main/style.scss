@@ -67,6 +67,10 @@ li {
     margin-left: 4px;
 }
 
+.logo-nav {
+    display: none;
+}
+
 .nav-list {
     display: flex;
     .nav-item {
@@ -89,6 +93,12 @@ li {
     }
 }
 
+.burger-icon,
+.shadow {
+    display: none;
+    transition: all .5s;
+}
+
 .start-screen {
     background: url(../../assets/images/main/noise_trans.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #211F20 100%), #211F20;
     margin-top: -125px;
@@ -100,7 +110,7 @@ li {
 }
 
 .not-only-content {
-    width: 39%;
+    max-width: 39%;
     margin-top: 185px;
     
     .not-only-title {
@@ -155,9 +165,8 @@ li {
 }
 
 .about-content {
-    width: 430px;
+    max-width: 430px;
     .main-title {
-        width: 95%;
         margin: 15px 0 24px;
     }
     .about-text {
@@ -461,7 +470,7 @@ li {
     }
 
     .not-only-content {
-        width: 460px;
+        max-width: 460px;
         margin: 0;
         .not-only-title {
             margin: 60px 0 40px;
@@ -529,5 +538,274 @@ li {
 
     .visit-content {
         width: 302px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .wrapper {
+        padding: 0 10px;
+    }
+
+    .header {
+        .wrapper {
+            align-items: center;
+        }
+    }
+
+    .logo-link.open {
+        visibility: hidden;
+        transition: all .5s;
+    }
+
+    body.lock {
+        overflow: hidden;
+    }
+
+    .burger-icon {
+        position: relative;
+        display: block;
+        width: 30px;
+        height: 22px;
+        cursor: pointer;
+        right: 43px;
+        transition: .3s;
+    }
+
+    .burger-icon span,
+    .burger-icon::before,
+    .burger-icon::after {
+        z-index: 5;
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        background: $primary;
+    }
+
+    .burger-icon::before,
+    .burger-icon::after {
+        content: "";
+    }
+
+    .burger-icon::before {
+        top: 0;
+    }
+
+    .burger-icon::after {
+        bottom: 0;
+    }
+
+    .burger-icon span {
+        top: 45%;
+    }
+
+    .burger-icon.open {
+        transform: rotate(90deg);
+        z-index: 5;
+    }
+
+    .nav {
+        position: fixed;
+        top: 0;
+        right: -200%;
+        width: 320px;
+        height: 100%;
+        z-index: 3;
+        background: $dark-3xl;
+        transition: right .3s ease;
+        .logo-nav {
+            display: block;
+            margin: 30px 10px;
+        }
+        .nav-list {
+            flex-direction: column;
+            gap: 40px;
+            padding: 0;
+            margin: 158px 0 0;
+            .nav-item {
+                margin: 0;
+                text-align: center;
+                .nav-link {
+                    font-size: 32px;
+                    line-height: 160%;
+                    padding-bottom: 7px;
+                }
+            }
+        }
+    }
+
+    .nav.open {
+        right: 0;
+    }
+
+    .shadow.open {
+        display: block;
+        background: rgba(41, 41, 41, 0.6);
+        z-index: 1;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .main-title,
+    .footer-title,
+    .not-only-content .not-only-title {
+        font-size: 25px;
+        text-align: center;
+        letter-spacing: 0.06em;
+    }
+
+    .not-only-content {
+        max-width: 400px;
+    }
+
+    .not-only-text {
+        text-align: center;
+    }
+
+    .not-only-img {
+        width: 86.5%;
+        margin-top: 105px;
+    }
+
+    .about {
+        .wrapper {
+            padding: 27px 10px 42px;
+            gap: 20px;
+            img {
+                width: 260px;
+            }
+        }
+    }
+
+    .about-content {
+        padding: 0 15px;
+        .about-text {
+            text-align: justify;
+            margin-bottom: 22px;
+        }
+    }
+
+    .friends {
+        .wrapper {
+            gap: 42px;
+            padding: 42px 10px;
+        }
+    }
+
+    .slider {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px 80px;
+    }
+
+    .slider-cards {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .slider-card:nth-child(2) {
+        display: none;
+    }
+
+    .slider-btn-left {
+        order: 1;
+    }
+
+    .slider-btn-right {
+        order: 2;
+    }
+
+    #help {
+        .wrapper {
+            padding: 42px 15px;
+        }
+    }
+
+    .help-cards {
+        padding-top: 42px;
+        justify-content: flex-start;
+        gap: 30px;
+        width: 290px;
+    }
+
+    .help-card {
+        width: 130px;
+        height: 87px;
+        h3 {
+            font-size: 15px;
+            line-height: 110%;
+            margin-top: 20px;
+        }
+    }
+
+    .icon-help-card {
+        width: 50px;
+        height: 50px;
+    }
+
+    .donation {
+        .wrapper {
+            padding: 42px 10px;
+            gap: 42px;
+            img {
+                width: 260px;
+            }
+        }
+    }
+
+    .donation-content {
+        align-items: center;
+        width: 300px;
+    }
+
+    .donation-card {
+        width: 281px;
+    }
+
+    .card-number {
+        font-size: 15px;
+    }
+
+    .bank {
+        line-height: 160%;
+        letter-spacing: normal;
+    }
+
+    .donation-description {
+        padding: 0 10px;
+        text-align: justify;
+    }
+
+    #footer {
+        .wrapper {
+            flex-direction: column;
+            align-items: center;
+            padding: 28px 10px 0;
+            gap: 40px;
+            img {
+                width: 260px;
+            }
+        }
+    }
+
+    .questions-content,
+    .visit-content {
+        padding: 0;
+        gap: 40px;
+    }
+
+    .questions-content {
+        align-items: center;
+    }
+
+    .footer-title {
+        width: 280px;
+        margin: 0 auto;
+    }
+
+    .map-link-first {
+        margin: 0;
     }
 }
