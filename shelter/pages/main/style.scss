@@ -616,6 +616,10 @@ li {
             display: block;
             margin: 30px 10px;
         }
+    }
+
+    .nav.open {
+        right: 0;
         .nav-list {
             flex-direction: column;
             gap: 40px;
@@ -631,10 +635,6 @@ li {
                 }
             }
         }
-    }
-
-    .nav.open {
-        right: 0;
     }
 
     .shadow.open {

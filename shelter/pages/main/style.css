@@ -695,7 +695,10 @@ li {
     display: block;
     margin: 30px 10px;
   }
-  .nav .nav-list {
+  .nav.open {
+    right: 0;
+  }
+  .nav.open .nav-list {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -704,17 +707,14 @@ li {
     padding: 0;
     margin: 158px 0 0;
   }
-  .nav .nav-list .nav-item {
+  .nav.open .nav-list .nav-item {
     margin: 0;
     text-align: center;
   }
-  .nav .nav-list .nav-item .nav-link {
+  .nav.open .nav-list .nav-item .nav-link {
     font-size: 32px;
     line-height: 160%;
     padding-bottom: 7px;
-  }
-  .nav.open {
-    right: 0;
   }
   .shadow.open {
     display: block;
