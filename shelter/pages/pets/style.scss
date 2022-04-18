@@ -38,7 +38,7 @@ h2 {
 }
 
 .wrapper {
-    width: 1280px;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 0 40px;
 }
@@ -73,6 +73,10 @@ h2 {
     margin-left: 4px;
 }
 
+.logo-nav {
+    display: none;
+}
+
 .nav-list {
     display: flex;
     .nav-item {
@@ -93,6 +97,12 @@ h2 {
             color: $dark-3xl;
         }
     }
+}
+
+.burger-icon,
+.shadow {
+    display: none;
+    transition: all .5s;
 }
 
 .friends {
@@ -268,8 +278,221 @@ h2 {
     width: 260px;
 }
 
-
 .icon-marker {
     width: 22px;
     height: 32px;
+}
+
+@media screen and (max-width: 1279px) {
+    .wrapper {
+        padding: 0 30px;
+    }
+    
+    .header {
+        .wrapper {
+            padding: 30px;
+        }
+    }
+
+    .friends {
+        .wrapper {
+            gap: 0;
+            padding: 80px 30px 76px;
+        }
+    }
+
+    .pets-cards {
+        max-width: 850px;
+        justify-content: center;
+        padding: 28px 0 39px;
+    }
+    
+    .pet-card:nth-child(7),
+    .pet-card:nth-child(8) {
+        display: none;
+    }
+
+    #footer {
+        .wrapper {
+            flex-wrap: wrap;
+            gap: 65px 60px;
+            justify-content: center;
+            padding-top: 14px;
+        }
+    }
+
+    .visit-content {
+        width: 302px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .wrapper {
+        padding: 0 10px;
+    }
+
+    .header {
+        .wrapper {
+            align-items: center;
+            padding: 30px 10px;
+        }
+    }
+
+    .logo-link.open {
+        visibility: hidden;
+        transition: all .5s;
+    }
+
+    body.lock {
+        overflow: hidden;
+    }
+
+    .burger-icon {
+        position: relative;
+        display: block;
+        width: 30px;
+        height: 22px;
+        cursor: pointer;
+        right: 43px;
+        transition: 1s;
+    }
+
+    .burger-icon span,
+    .burger-icon::before,
+    .burger-icon::after {
+        z-index: 5;
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        background: black;
+        transition: .3s;
+    }
+
+    .burger-icon::before,
+    .burger-icon::after {
+        content: "";
+    }
+
+    .burger-icon::before {
+        top: 0;
+    }
+
+    .burger-icon::after {
+        bottom: 0;
+    }
+
+    .burger-icon span {
+        top: 45%;
+    }
+
+    .burger-icon.open {
+        transform: rotate(90deg);
+        z-index: 5;
+    }
+
+    .nav {
+        position: fixed;
+        top: 0;
+        right: -200%;
+        width: 320px;
+        height: 100%;
+        z-index: 3;
+        background: $light-xl;
+        transition: right .3s ease;
+        .logo-nav {
+            display: block;
+            margin: 30px 10px;
+        }
+        
+    }
+
+    .nav.open {
+        right: 0;
+        .nav-list {
+            flex-direction: column;
+            gap: 40px;
+            padding: 0;
+            margin: 158px 0 0;
+            .nav-item {
+                margin: 0;
+                text-align: center;
+                .nav-link {
+                    font-size: 32px;
+                    line-height: 160%;
+                    padding-bottom: 7px;
+                }
+            }
+        }
+    }
+
+    .shadow.open {
+        display: block;
+        background: rgba(41, 41, 41, 0.6);
+        z-index: 1;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .main-title,
+    .footer-title {
+        font-size: 25px;
+        text-align: center;
+        letter-spacing: 0.06em;
+    }
+
+    .friends {
+        .wrapper {
+            gap: 42px;
+            padding: 40px 10px 42px;
+        }
+    }
+
+    .pets-cards{
+        padding: 0;
+        max-width: 500px;
+    }
+
+    .pet-card:nth-child(4),
+    .pet-card:nth-child(5),
+    .pet-card:nth-child(6) {
+        display: none;
+    }
+
+    .pagination {
+        gap: 10px;
+    }
+
+    #footer {
+        .wrapper {
+            flex-direction: column;
+            align-items: center;
+            padding: 28px 10px 0;
+            gap: 40px;
+            img {
+                width: 260px;
+            }
+        }
+    }
+
+    .questions-content,
+    .visit-content {
+        padding: 0;
+        gap: 40px;
+    }
+
+    .questions-content {
+        align-items: center;
+    }
+
+    .footer-title {
+        width: 280px;
+        margin: 0 auto;
+    }
+
+    .map-link-first {
+        margin: 0;
+    }
 }

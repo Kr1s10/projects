@@ -24,7 +24,7 @@ h2 {
 }
 
 .wrapper {
-  width: 1280px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 40px;
 }
@@ -63,6 +63,10 @@ h2 {
   margin-left: 4px;
 }
 
+.logo-nav {
+  display: none;
+}
+
 .nav-list {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -90,6 +94,13 @@ h2 {
 
 .nav-list .nav-item .nav-link:hover {
   color: #292929;
+}
+
+.burger-icon,
+.shadow {
+  display: none;
+  -webkit-transition: all .5s;
+  transition: all .5s;
 }
 
 .friends {
@@ -312,5 +323,199 @@ h2 {
 .icon-marker {
   width: 22px;
   height: 32px;
+}
+
+@media screen and (max-width: 1279px) {
+  .wrapper {
+    padding: 0 30px;
+  }
+  .header .wrapper {
+    padding: 30px;
+  }
+  .friends .wrapper {
+    gap: 0;
+    padding: 80px 30px 76px;
+  }
+  .pets-cards {
+    max-width: 850px;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding: 28px 0 39px;
+  }
+  .pet-card:nth-child(7),
+  .pet-card:nth-child(8) {
+    display: none;
+  }
+  #footer .wrapper {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    gap: 65px 60px;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding-top: 14px;
+  }
+  .visit-content {
+    width: 302px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .wrapper {
+    padding: 0 10px;
+  }
+  .header .wrapper {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 30px 10px;
+  }
+  .logo-link.open {
+    visibility: hidden;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+  }
+  body.lock {
+    overflow: hidden;
+  }
+  .burger-icon {
+    position: relative;
+    display: block;
+    width: 30px;
+    height: 22px;
+    cursor: pointer;
+    right: 43px;
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+  .burger-icon span,
+  .burger-icon::before,
+  .burger-icon::after {
+    z-index: 5;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: black;
+    -webkit-transition: .3s;
+    transition: .3s;
+  }
+  .burger-icon::before,
+  .burger-icon::after {
+    content: "";
+  }
+  .burger-icon::before {
+    top: 0;
+  }
+  .burger-icon::after {
+    bottom: 0;
+  }
+  .burger-icon span {
+    top: 45%;
+  }
+  .burger-icon.open {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+    z-index: 5;
+  }
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -200%;
+    width: 320px;
+    height: 100%;
+    z-index: 3;
+    background: #FFF;
+    -webkit-transition: right .3s ease;
+    transition: right .3s ease;
+  }
+  .nav .logo-nav {
+    display: block;
+    margin: 30px 10px;
+  }
+  .nav.open {
+    right: 0;
+  }
+  .nav.open .nav-list {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 40px;
+    padding: 0;
+    margin: 158px 0 0;
+  }
+  .nav.open .nav-list .nav-item {
+    margin: 0;
+    text-align: center;
+  }
+  .nav.open .nav-list .nav-item .nav-link {
+    font-size: 32px;
+    line-height: 160%;
+    padding-bottom: 7px;
+  }
+  .shadow.open {
+    display: block;
+    background: rgba(41, 41, 41, 0.6);
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .main-title,
+  .footer-title {
+    font-size: 25px;
+    text-align: center;
+    letter-spacing: 0.06em;
+  }
+  .friends .wrapper {
+    gap: 42px;
+    padding: 40px 10px 42px;
+  }
+  .pets-cards {
+    padding: 0;
+    max-width: 500px;
+  }
+  .pet-card:nth-child(4),
+  .pet-card:nth-child(5),
+  .pet-card:nth-child(6) {
+    display: none;
+  }
+  .pagination {
+    gap: 10px;
+  }
+  #footer .wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 28px 10px 0;
+    gap: 40px;
+  }
+  #footer .wrapper img {
+    width: 260px;
+  }
+  .questions-content,
+  .visit-content {
+    padding: 0;
+    gap: 40px;
+  }
+  .questions-content {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .footer-title {
+    width: 280px;
+    margin: 0 auto;
+  }
+  .map-link-first {
+    margin: 0;
+  }
 }
 /*# sourceMappingURL=style.css.map */
