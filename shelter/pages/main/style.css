@@ -826,7 +826,7 @@ li {
     width: 300px;
   }
   .donation-card {
-    width: 281px;
+    width: 282px;
   }
   .card-number {
     font-size: 15px;
@@ -850,7 +850,7 @@ li {
     padding: 28px 10px 0;
     gap: 40px;
   }
-  #footer .wrapper img {
+  #footer .wrapper .footer-puppy {
     width: 260px;
   }
   .questions-content,
