@@ -554,7 +554,7 @@ li {
 
     .logo-link.open {
         visibility: hidden;
-        transition: all .5s;
+        transition: .1s;
     }
 
     body.lock {
@@ -615,6 +615,7 @@ li {
         .logo-nav {
             display: block;
             margin: 30px 10px;
+            width: 186px;
         }
     }
 

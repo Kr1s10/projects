@@ -637,8 +637,8 @@ li {
   }
   .logo-link.open {
     visibility: hidden;
-    -webkit-transition: all .5s;
-    transition: all .5s;
+    -webkit-transition: .1s;
+    transition: .1s;
   }
   body.lock {
     overflow: hidden;
@@ -694,6 +694,7 @@ li {
   .nav .logo-nav {
     display: block;
     margin: 30px 10px;
+    width: 186px;
   }
   .nav.open {
     right: 0;
