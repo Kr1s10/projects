@@ -4,11 +4,26 @@ html {
   scroll-behavior: smooth;
 }
 
+body.lock {
+  overflow: hidden;
+}
+
 *, button {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: "Georgia", serif;
   font-weight: 400;
+}
+
+.attention {
+  position: absolute;
+  max-width: 1280px;
+  font-size: 30px;
+  background: #F1CDB3;
+  top: 150px;
+  left: 200px;
+  right: 200px;
+  padding: 30px;
 }
 
 a {
@@ -223,7 +238,8 @@ li {
 }
 
 .slider-btn-left,
-.slider-btn-right {
+.slider-btn-right,
+.popup-close-btn {
   width: 52px;
   height: 52px;
   border: 2px solid #F1CDB3;
@@ -237,6 +253,7 @@ li {
 
 .slider-btn-left:hover,
 .slider-btn-right:hover,
+.popup-close-btn:hover,
 .not-only-btn:hover,
 .get-know-btn:hover,
 .donation-card:hover {
@@ -388,6 +405,150 @@ li {
   letter-spacing: 0.06em;
   -webkit-transition: .5s;
   transition: .5s;
+}
+
+.popup-wrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(41, 41, 41, 0.6);
+  z-index: 1;
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.popup-wrapper:hover .popup-close-btn {
+  background: #FDDCC4;
+  border-color: #FDDCC4;
+}
+
+.popup-wrapper:hover .popup-close-btn:hover {
+  cursor: pointer;
+  background: #FDDCC4;
+  border-color: #FDDCC4;
+}
+
+.popup-wrapper.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.popup {
+  position: relative;
+}
+
+.popup:hover {
+  cursor: default;
+}
+
+.popup:hover .popup-close-btn {
+  background-color: transparent;
+  border-color: #F1CDB3;
+}
+
+.popup-card {
+  width: 900px;
+  height: 500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 29px;
+  background: #FAFAFA;
+  border-radius: 9px;
+}
+
+.popup-card img {
+  border-radius: 9px 0 0 9px;
+}
+
+.popup-content {
+  margin: 51px 20px 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 40px;
+}
+
+.popup-content .popup-description,
+.popup-content .popup-list {
+  margin: 0;
+  padding: 0;
+}
+
+.popup-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10px;
+}
+
+.popup-title h2 {
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+.popup-title span {
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+}
+
+.popup-description,
+.popup-item {
+  font-size: 15px;
+  line-height: 112%;
+  letter-spacing: 0.06em;
+}
+
+.popup-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  margin-bottom: 11px;
+}
+
+.popup-item::before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #F1CDB3;
+}
+
+.category {
+  font-weight: 700;
+}
+
+.popup-close-btn {
+  position: absolute;
+  right: -42px;
+  top: -52px;
+}
+
+.popup-close-btn img {
+  margin-top: 5px;
 }
 
 #help .wrapper {
@@ -687,6 +848,21 @@ li {
     gap: 40px;
     left: -620px;
   }
+  .popup-card {
+    width: 630px;
+    height: 350px;
+    gap: 11px;
+  }
+  .popup-content {
+    margin: 10px 8px 0 0;
+    gap: 20px;
+  }
+  .popup-description {
+    font-size: 13px;
+  }
+  .popup-item {
+    margin-bottom: 5px;
+  }
   .help-cards {
     padding: 59px 0 0;
     -webkit-column-gap: 7.8%;
@@ -730,9 +906,6 @@ li {
     visibility: hidden;
     -webkit-transition: .1s;
     transition: .1s;
-  }
-  body.lock {
-    overflow: hidden;
   }
   .burger-icon {
     position: relative;
@@ -913,6 +1086,31 @@ li {
     -webkit-box-ordinal-group: 3;
         -ms-flex-order: 2;
             order: 2;
+  }
+  .popup-card {
+    width: 240px;
+    height: 340px;
+  }
+  .popup-card img {
+    display: none;
+  }
+  .popup-content {
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+    overflow-y: auto;
+  }
+  .popup-title {
+    text-align: center;
+  }
+  .popup-description {
+    text-align: justify;
+  }
+  .popup-item {
+    margin-bottom: 6px;
+  }
+  .popup-close-btn {
+    right: -30px;
   }
   #help .wrapper {
     padding: 42px 15px;
