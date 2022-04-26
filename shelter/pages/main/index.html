@@ -19,13 +19,15 @@
                 </div>
             </a>
             <nav class="nav">
-                <div class="logo-nav">
-                    <h1 class="title">Cozy House</h1>
-                    <span class="sub-title">Shelter for pets in Boston</span>
-                </div>
+                <a class="logo-nav" href="#">
+                    <div class="logo">
+                        <h1 class="title">Cozy House</h1>
+                        <span class="sub-title">Shelter for pets in Boston</span>
+                    </div>
+                </a>
                 <ul class="nav-list">
                     <li class="nav-item">
-                        <a class="nav-link active" href="../main/index.html">About the shelter</a>
+                        <a class="nav-link active" href="#">About the shelter</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../pets/index.html">Our pets</a>
@@ -45,6 +47,11 @@
         </div>
     </header>
     <main class="main">
+        <section class="attention">
+            Привет, хочу тебя попросить дать мне немного времени, чтобы доделать работу) Я живу в Украине, в городе, где достаточно напряженная обстановка на сегодняшний день, не всегда всё могу успеть. Если тебе не трудно, оставь себя видимым, чтобы я могла найти тебя и попросила перепроверить уже доделанную работу. Огромное спасибо за понимание :)
+            <hr>
+            Hello, I want to ask you to give me some time to finish the work) I live in Ukraine, in a city where the situation is rather tense today, I can’t always do everything. If it's not difficult for you, leave yourself visible so that I can find you and ask you to double-check the work already completed. Thanks a lot for your understanding :)
+        </section>
         <section class="start-screen">
             <div class="wrapper">
                 <div class="not-only-content">
@@ -80,23 +87,7 @@
                     <button class="slider-btn-left">
                         <img class="icon-arrow-left" src="../../assets/icons/arrow-left.svg" alt="arrow-left">
                     </button>
-                    <div class="slider-cards">
-                        <div class="slider-card">
-                            <img class="slider-photo" src="../../assets/images/pets270/katrine.png" alt="cat-katrine">
-                            <h3 class="slider-card-title">Katrine</h3>
-                            <button class="slider-card-btn">Learn more</button>
-                        </div>
-                        <div class="slider-card">
-                            <img class="slider-photo" src="../../assets/images/pets270/jennifer.png" alt="puppy-jennifer">
-                            <h3 class="slider-card-title">Jennifer</h3>
-                            <button class="slider-card-btn">Learn more</button>
-                        </div>
-                        <div class="slider-card">
-                            <img class="slider-photo" src="../../assets/images/pets270/woody.png" alt="dog-woody">
-                            <h3 class="slider-card-title">Woody</h3>
-                            <button class="slider-card-btn">Learn more</button>
-                        </div>
-                    </div>
+                    <div class="slider-wrapper"></div>
                     <button class="slider-btn-right">
                         <img class="icon-arrow-right" src="../../assets/icons/arrow-right.svg" alt="arrow-right">
                     </button>
@@ -104,6 +95,9 @@
                 <a href="../pets/index.html">
                     <button class="get-know-btn">Get to know the rest</button>
                 </a>
+                <div class="popup-wrapper">
+                    <div class="popup"></div>
+                </div>
             </div>
         </section>
         <section id="help">
@@ -193,5 +187,6 @@
             <img class="footer-puppy" src="../../assets/images/main/footer-puppy.png" alt="footer-puppy">
         </div>
     </footer>
+    <script type="module" src="./script.js"></script>
 </body>
 </html>

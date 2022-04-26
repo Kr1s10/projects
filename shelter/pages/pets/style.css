@@ -373,8 +373,8 @@ h2 {
   }
   .logo-link.open {
     visibility: hidden;
-    -webkit-transition: all .5s;
-    transition: all .5s;
+    -webkit-transition: all .1s;
+    transition: all .1s;
   }
   body.lock {
     overflow: hidden;
@@ -386,8 +386,8 @@ h2 {
     height: 22px;
     cursor: pointer;
     right: 43px;
-    -webkit-transition: 1s;
-    transition: 1s;
+    -webkit-transition: .3s;
+    transition: .3s;
   }
   .burger-icon span,
   .burger-icon::before,
@@ -432,11 +432,12 @@ h2 {
   .nav .logo-nav {
     display: block;
     margin: 30px 10px;
+    width: 186px;
   }
   .nav.open {
     right: 0;
   }
-  .nav.open .nav-list {
+  .nav-list {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -445,11 +446,11 @@ h2 {
     padding: 0;
     margin: 158px 0 0;
   }
-  .nav.open .nav-list .nav-item {
+  .nav-list .nav-item {
     margin: 0;
     text-align: center;
   }
-  .nav.open .nav-list .nav-item .nav-link {
+  .nav-list .nav-item .nav-link {
     font-size: 32px;
     line-height: 160%;
     padding-bottom: 7px;

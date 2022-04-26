@@ -340,7 +340,7 @@ h2 {
 
     .logo-link.open {
         visibility: hidden;
-        transition: all .5s;
+        transition: all .1s;
     }
 
     body.lock {
@@ -354,7 +354,7 @@ h2 {
         height: 22px;
         cursor: pointer;
         right: 43px;
-        transition: 1s;
+        transition: .3s;
     }
 
     .burger-icon span,
@@ -402,25 +402,27 @@ h2 {
         .logo-nav {
             display: block;
             margin: 30px 10px;
+            width: 186px;
         }
         
     }
 
     .nav.open {
         right: 0;
-        .nav-list {
-            flex-direction: column;
-            gap: 40px;
-            padding: 0;
-            margin: 158px 0 0;
-            .nav-item {
-                margin: 0;
-                text-align: center;
-                .nav-link {
-                    font-size: 32px;
-                    line-height: 160%;
-                    padding-bottom: 7px;
-                }
+    }
+
+    .nav-list {
+        flex-direction: column;
+        gap: 40px;
+        padding: 0;
+        margin: 158px 0 0;
+        .nav-item {
+            margin: 0;
+            text-align: center;
+            .nav-link {
+                font-size: 32px;
+                line-height: 160%;
+                padding-bottom: 7px;
             }
         }
     }
