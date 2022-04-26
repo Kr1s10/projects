@@ -24,3 +24,187 @@ function close () {
     burgerIcon.classList.remove('open');
     nav.classList.remove('open');
 }
+
+// pagination 
+
+const pagination = document.querySelector('.pagination');
+const allCards = document.querySelector('.pets-cards');
+const numberOfPage = document.querySelector('[data-btn="number"]');
+const firstBtn = document.querySelector('[data-btn="first"]');
+const prevBtn = document.querySelector('[data-btn="prev"]');
+const nextBtn = document.querySelector('[data-btn="next"]');
+const lastBtn = document.querySelector('[data-btn="last"]');
+
+let currWidth = 1280;
+let numberOfCards = checkCurrWidth();
+let currPage = 1;
+let contentOfPages = [];
+let pets = [];
+let startPets = [];
+    
+await preloadPets(startPets);
+createCommonArr();
+showCards(numberOfCards, currPage);
+
+window.addEventListener('resize', () => {
+    if (checkCurrWidth() !== numberOfCards) {
+        numberOfCards = checkCurrWidth();
+        showCards(numberOfCards, currPage);
+    }
+})
+
+pagination.addEventListener('click', e => {
+    if (e.target.disabled) return;
+    switch (e.target.dataset.btn) {
+        case 'first':
+            currPage = 1;
+            break; 
+        case 'prev':
+            currPage--;
+            break;
+        case 'next':
+            currPage++;
+            break;
+        case 'last':
+            currPage = 48 / numberOfCards;
+            break;
+    }
+
+    numberOfPage.textContent = currPage;
+    checkDisabledBtn();
+    showCards(numberOfCards, currPage);
+})
+
+async function preloadPets(arr) {
+    const res = await fetch('../../assets/json/pets.json');
+    const data = await res.json();
+
+    for (let pet of data) {
+        arr.push(pet);
+    }
+
+    pets = shuffleCards(arr);
+}
+
+function checkDisabledBtn () {
+    if (currPage === 1) {
+        firstBtn.disabled = true;
+        prevBtn.disabled = true;
+        nextBtn.disabled = false;
+        lastBtn.disabled = false;
+    }else if (currPage === 48 / numberOfCards) {
+        firstBtn.disabled = false;
+        prevBtn.disabled = false;
+        nextBtn.disabled = true;
+        lastBtn.disabled = true;
+    } else {
+        firstBtn.disabled = false;
+        prevBtn.disabled = false;
+        nextBtn.disabled = false;
+        lastBtn.disabled = false;
+    }
+}
+
+function createCard(index) {
+    return `
+    <div class="pet-card" data-pet="${index}">
+        <img class="pet-photo" src="${pets[index].img}" alt="${pets[index].name}">
+        <h3 class="pet-card-title">${pets[index].name}</h3>
+        <button class="pet-card-btn" data-btn="${index}">Learn more</button>
+    </div>
+    `
+}
+
+function showCards(n, currPage) {
+    allCards.innerHTML = '';
+    for (let i = 0; i < n; i++) {
+        allCards.insertAdjacentHTML("beforeend", createCard(contentOfPages[numberOfCards*(currPage-1)+i]));
+    }
+}
+
+function checkCurrWidth() {
+    if (document.documentElement.clientWidth >= 1280) return 8;
+    if (document.documentElement.clientWidth >= 768) return 6;
+
+    return 3;
+}
+
+function shuffleCards(arr) {
+    return arr.sort(() => Math.random() - 0.5);
+}
+
+function createOnePage() {
+    let firstPart = [0, 1, 2, 3];
+    let secondPart = [4, 5, 6, 7];
+    const onePageArr = [];
+
+    onePageArr.push(shuffleCards(firstPart));
+    onePageArr.push(shuffleCards(secondPart));
+
+    return onePageArr.flat();
+}
+
+function createCommonArr() {
+    const commonArr = [];
+    for (let i = 0; i < 6; i++) {
+        commonArr.push(createOnePage());
+    }
+    contentOfPages = commonArr.flat();
+}
+
+// popup 
+
+const popupWrapper = document.querySelector('.popup-wrapper');
+const popup = document.querySelector('.popup');
+
+allCards.addEventListener('click', (e) => {
+    if (e.target.closest('.pet-card')) {
+        createPopup(e.target.closest('.pet-card').dataset.pet);
+        document.body.classList.add('lock');
+        popupWrapper.classList.add('active');
+    }
+})
+
+popupWrapper.addEventListener('click', (e) => {
+    if (e.target.classList.contains('popup-wrapper') || e.target.closest('.popup-close-btn')) {
+        popupWrapper.classList.remove('active');
+        document.body.classList.remove('lock');
+        popup.innerHTML = '';
+    }
+})
+
+function createPopup(index) {
+    popup.insertAdjacentHTML('beforeend', `
+    <button class="popup-close-btn">
+        <img src="../../assets/icons/close.svg" alt="close">
+    </button>
+    <div class="popup-card">
+        <img src="${pets[index].bigImg}" alt="${pets[index].name}">
+        <div class="popup-content">
+            <div class="popup-title">
+                <h2>${pets[index].name}</h2>
+                <span>${pets[index].type} - ${pets[index].breed}</span>
+            </div>
+            <p class="popup-description">${pets[index].description}</p>
+            <ul class="popup-list">
+                <li class='popup-item'>
+                    <span class="category">Age:</span>
+                    ${pets[index].age}
+                </li>
+                <li class='popup-item'>
+                    <span class="category">Inoculations:</span>
+                    ${pets[index].inoculations.join(', ')}
+                </li>
+                <li class='popup-item'>
+                    <span class="category">Diseases:</span>
+                    ${pets[index].diseases.join(', ')}
+                </li>
+                <li class='popup-item'>
+                    <span class="category">Parasites:</span>
+                    ${pets[index].parasites.join(', ')}
+                </li>
+            </ul>
+        </div>
+    </div>
+    `)
+}
