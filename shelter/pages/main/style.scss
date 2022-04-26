@@ -30,6 +30,7 @@ body.lock {
 }
 
 .attention {
+    display: none;
     position: absolute;
     max-width: 1280px;
     font-size: 30px;
@@ -363,8 +364,15 @@ li {
     }
 }
 
+@keyframes modal-anim {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
 .popup-wrapper.active {
     display: flex;
+    animation-name: modal-anim;
+    animation-duration: .5s;
 }
 
 .popup {

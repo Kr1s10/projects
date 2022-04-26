@@ -50,54 +50,16 @@
         <section class="friends">
             <div class="wrapper">
                 <h2 class="main-title">Our friends who <br> are looking for a house</h2>
-                <div class="pets-cards">
-                    <div class="pet-card">
-                        <img class="pet-photo" src="../../assets/images/pets270/katrine.png" alt="cat-katrine">
-                        <h3 class="pet-card-title">Katrine</h3>
-                        <button class="pet-card-btn">Learn more</button>
-                    </div>
-                    <div class="pet-card">
-                        <img class="pet-photo" src="../../assets/images/pets270/jennifer.png" alt="puppy-jennifer">
-                        <h3 class="pet-card-title">Jennifer</h3>
-                        <button class="pet-card-btn">Learn more</button>
-                    </div>
-                    <div class="pet-card">
-                        <img class="pet-photo" src="../../assets/images/pets270/woody.png" alt="dog-woody">
-                        <h3 class="pet-card-title">Woody</h3>
-                        <button class="pet-card-btn">Learn more</button>
-                    </div>
-                    <div class="pet-card">
-                        <img class="pet-photo" src="../../assets/images/pets270/sophia.png" alt="puppy-sophia">
-                        <h3 class="pet-card-title">Sophia</h3>
-                        <button class="pet-card-btn">Learn more</button>
-                    </div>
-                    <div class="pet-card">
-                        <img class="pet-photo" src="../../assets/images/pets270/timmy.png" alt="cat-timmy">
-                        <h3 class="pet-card-title">Timmy</h3>
-                        <button class="pet-card-btn">Learn more</button>
-                    </div>
-                    <div class="pet-card">
-                        <img class="pet-photo" src="../../assets/images/pets270/charly.png" alt="dog-charly">
-                        <h3 class="pet-card-title">Charly</h3>
-                        <button class="pet-card-btn">Learn more</button>
-                    </div>
-                    <div class="pet-card">
-                        <img class="pet-photo" src="../../assets/images/pets270/scarlett.png" alt="puppy-scarlett">
-                        <h3 class="pet-card-title">Scarlett</h3>
-                        <button class="pet-card-btn">Learn more</button>
-                    </div>
-                    <div class="pet-card">
-                        <img class="pet-photo" src="../../assets/images/pets270/freddie.png" alt="cat-freddie">
-                        <h3 class="pet-card-title">Freddie</h3>
-                        <button class="pet-card-btn">Learn more</button>
-                    </div>
-                </div>
+                <div class="pets-cards"></div>
                 <div class="pagination">
-                    <button class="pag-btn" disabled data-disabled="true">&lt&lt</button>
-                    <button class="pag-btn" disabled data-disabled="true">&lt</button>
-                    <button class="pag-btn active">1</button>
-                    <button class="pag-btn">&gt</button>
-                    <button class="pag-btn">&gt&gt</button>
+                    <button class="pag-btn" disabled data-btn="first" data-disabled="true">&lt&lt</button>
+                    <button class="pag-btn" disabled data-btn="prev" data-disabled="true">&lt</button>
+                    <button class="pag-btn active" data-btn="number">1</button>
+                    <button class="pag-btn" data-btn="next" data-disabled="false">&gt</button>
+                    <button class="pag-btn" data-btn="last" data-disabled="false">&gt&gt</button>
+                </div>
+                <div class="popup-wrapper">
+                    <div class="popup"></div>
                 </div>
             </div>
         </section>
@@ -129,6 +91,6 @@
             <img class="footer-puppy" src="../../assets/images/main/footer-puppy.png" alt="footer-puppy">
         </div>
     </footer>
-    <script src="./script.js"></script>
+    <script type="module" src="./script.js"></script>
 </body>
 </html>

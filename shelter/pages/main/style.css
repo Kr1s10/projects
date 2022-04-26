@@ -16,6 +16,7 @@ body.lock {
 }
 
 .attention {
+  display: none;
   position: absolute;
   max-width: 1280px;
   font-size: 30px;
@@ -434,10 +435,32 @@ li {
   border-color: #FDDCC4;
 }
 
+@-webkit-keyframes modal-anim {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-anim {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .popup-wrapper.active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-animation-name: modal-anim;
+          animation-name: modal-anim;
+  -webkit-animation-duration: .5s;
+          animation-duration: .5s;
 }
 
 .popup {

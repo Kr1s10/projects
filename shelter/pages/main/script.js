@@ -190,15 +190,15 @@ const popupWrapper = document.querySelector('.popup-wrapper');
 const popup = document.querySelector('.popup');
 
 sliderWrapper.addEventListener('click', (e) => {
-    if (e.target.classList.contains('slider-card-btn')) {
-        createPopup(e.target.dataset.btn);
+    if (e.target.closest('.slider-card')) {
+        createPopup(e.target.closest('.slider-card').dataset.pet);
         document.body.classList.add('lock');
         popupWrapper.classList.add('active');
     }
 })
 
 popupWrapper.addEventListener('click', (e) => {
-    if (e.target.classList.contains('popup-wrapper') || e.target.classList.contains('popup-close-btn')) {
+    if (e.target.classList.contains('popup-wrapper') || e.target.closest('.popup-close-btn')) {
         popupWrapper.classList.remove('active');
         document.body.classList.remove('lock');
         popup.innerHTML = '';
