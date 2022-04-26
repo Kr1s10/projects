@@ -19,6 +19,10 @@ html {
     scroll-behavior: smooth;
 }
 
+body.lock {
+    overflow: hidden;
+}
+
 *, button {
     box-sizing: border-box;
     font-family: $georgia;
@@ -224,12 +228,10 @@ h2 {
     cursor: auto;
 }
 
-
-// @keyframes modal-anim {
-//     from {opacity: 0;}
-//     to {opacity: 1;}
-// }
-
+@keyframes modal-anim {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
 
 .popup-wrapper {
     position: fixed;
@@ -256,6 +258,8 @@ h2 {
 
 .popup-wrapper.active {
     display: flex;
+    animation-name: modal-anim;
+    animation-duration: .5s;
 }
 
 .popup {
@@ -269,6 +273,21 @@ h2 {
     }
 }
 
+.popup-close-btn {
+    width: 52px;
+    height: 52px;
+    border: 2px solid $primary;
+    box-sizing: border-box;
+    border-radius: 100px;
+    background-color: transparent;
+    transition: .5s;
+    &:hover {
+        cursor: pointer;
+        background: $primary-light;
+        border-color: $primary-light;
+    }
+}
+
 .popup-card {
     width: 900px;
     height: 500px;
@@ -278,6 +297,7 @@ h2 {
     border-radius: 9px;
     img {
         border-radius: 9px 0 0 9px;
+        min-width: 500px;
     }
 }
 
@@ -428,16 +448,14 @@ h2 {
         justify-content: center;
         padding: 28px 0 39px;
     }
-    
-    .pet-card:nth-child(7),
-    .pet-card:nth-child(8) {
-        display: none;
-    }
 
     .popup-card {
         width: 630px;
         height: 350px;
         gap: 11px;
+        img {
+            min-width: 350px;
+        }
     }
 
     .popup-content {
@@ -482,10 +500,6 @@ h2 {
     .logo-link.open {
         visibility: hidden;
         transition: all .1s;
-    }
-
-    body.lock {
-        overflow: hidden;
     }
 
     .burger-icon {
@@ -596,12 +610,6 @@ h2 {
     .pets-cards{
         padding: 0;
         max-width: 500px;
-    }
-
-    .pet-card:nth-child(4),
-    .pet-card:nth-child(5),
-    .pet-card:nth-child(6) {
-        display: none;
     }
 
     .pagination {

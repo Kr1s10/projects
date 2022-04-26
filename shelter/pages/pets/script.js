@@ -152,3 +152,59 @@ function createCommonArr() {
     contentOfPages = commonArr.flat();
 }
 
+// popup 
+
+const popupWrapper = document.querySelector('.popup-wrapper');
+const popup = document.querySelector('.popup');
+
+allCards.addEventListener('click', (e) => {
+    if (e.target.closest('.pet-card')) {
+        createPopup(e.target.closest('.pet-card').dataset.pet);
+        document.body.classList.add('lock');
+        popupWrapper.classList.add('active');
+    }
+})
+
+popupWrapper.addEventListener('click', (e) => {
+    if (e.target.classList.contains('popup-wrapper') || e.target.closest('.popup-close-btn')) {
+        popupWrapper.classList.remove('active');
+        document.body.classList.remove('lock');
+        popup.innerHTML = '';
+    }
+})
+
+function createPopup(index) {
+    popup.insertAdjacentHTML('beforeend', `
+    <button class="popup-close-btn">
+        <img src="../../assets/icons/close.svg" alt="close">
+    </button>
+    <div class="popup-card">
+        <img src="${pets[index].bigImg}" alt="${pets[index].name}">
+        <div class="popup-content">
+            <div class="popup-title">
+                <h2>${pets[index].name}</h2>
+                <span>${pets[index].type} - ${pets[index].breed}</span>
+            </div>
+            <p class="popup-description">${pets[index].description}</p>
+            <ul class="popup-list">
+                <li class='popup-item'>
+                    <span class="category">Age:</span>
+                    ${pets[index].age}
+                </li>
+                <li class='popup-item'>
+                    <span class="category">Inoculations:</span>
+                    ${pets[index].inoculations.join(', ')}
+                </li>
+                <li class='popup-item'>
+                    <span class="category">Diseases:</span>
+                    ${pets[index].diseases.join(', ')}
+                </li>
+                <li class='popup-item'>
+                    <span class="category">Parasites:</span>
+                    ${pets[index].parasites.join(', ')}
+                </li>
+            </ul>
+        </div>
+    </div>
+    `)
+}
