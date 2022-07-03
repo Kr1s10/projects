@@ -1,4 +1,4 @@
-import { IData, ISourses } from '../../types/interfaces';
+import { IData, ISourses, TCallback } from '../../types/interfaces';
 type TOptions = { sources: string };
 
 class Loader {
@@ -15,7 +15,7 @@ class Loader {
 
     getResp(
         { endpoint, options = {} }: { endpoint: string; options?: TOptions | Record<string, never> },
-        callback = () => {
+        callback: TCallback = () => {
             console.error('No callback for GET response');
         }
     ) {
@@ -43,16 +43,11 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(
-        method: string,
-        endpoint: string,
-        callback: (data?: IData | ISourses) => void,
-        options: TOptions | Record<string, never> = {}
-    ) {
+    load(method: string, endpoint: string, callback: TCallback, options: TOptions | Record<string, never> = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler.bind(this))
             .then((res) => res.json())
-            .then((data: IData | ISourses) => callback(data))
+            .then((data: IData | ISourses) => callback(data as IData & ISourses))
             .catch((err) => console.error(err));
     }
 }

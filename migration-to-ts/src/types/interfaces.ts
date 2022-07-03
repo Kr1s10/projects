@@ -32,3 +32,5 @@ export interface IData {
     totalResults: number;
     articles: IArticle[];
 }
+
+export type TCallback = (() => void) | ((data: ISourses) => void) | ((data: IData) => void);
