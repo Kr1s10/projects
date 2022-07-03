@@ -4,10 +4,10 @@ type TOptions = { sources: string };
 class Loader {
     baseLink: string;
     options: {
-        apikey: string;
+        apiKey: string;
     };
 
-    constructor(baseLink: string, options: { apikey: string }) {
+    constructor(baseLink: string, options: { apiKey: string }) {
         this.baseLink = baseLink;
         this.options = options;
         // this.errorHandler.bind(this);
