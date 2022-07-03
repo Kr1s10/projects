@@ -2,7 +2,7 @@ import AppLoader from './appLoader';
 import { TCallback } from '../../types/interfaces';
 
 class AppController extends AppLoader {
-    getSources(callback: TCallback) {
+    public getSources(callback: TCallback) {
         super.getResp(
             {
                 endpoint: 'sources',
@@ -11,7 +11,7 @@ class AppController extends AppLoader {
         );
     }
 
-    getNews(e: Event, callback: TCallback) {
+    public getNews(e: Event, callback: TCallback) {
         let target = e.target as HTMLElement;
         const newsContainer = e.currentTarget as HTMLElement;
 

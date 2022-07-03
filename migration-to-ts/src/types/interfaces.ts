@@ -34,3 +34,8 @@ export interface IData {
 }
 
 export type TCallback = (() => void) | ((data: ISourses) => void) | ((data: IData) => void);
+
+export enum Erorrs {
+    unauthorized = 401,
+    notFound = 404,
+}

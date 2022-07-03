@@ -1,20 +1,20 @@
-import { IData, ISourses, TCallback } from '../../types/interfaces';
-type TOptions = { sources: string };
+import { IData, ISourses, TCallback, Erorrs } from '../../types/interfaces';
+type TOptions = Partial<{
+    apiKey: string;
+    sources: string;
+}>;
 
 class Loader {
-    baseLink: string;
-    options: {
-        apiKey: string;
-    };
+    private readonly baseLink: string;
+    private readonly options: TOptions;
 
-    constructor(baseLink: string, options: { apiKey: string }) {
+    constructor(baseLink: string, options: TOptions) {
         this.baseLink = baseLink;
         this.options = options;
-        // this.errorHandler.bind(this);
     }
 
-    getResp(
-        { endpoint, options = {} }: { endpoint: string; options?: TOptions | Record<string, never> },
+    public getResp(
+        { endpoint, options = {} }: { endpoint: string; options?: TOptions },
         callback: TCallback = () => {
             console.error('No callback for GET response');
         }
@@ -22,9 +22,9 @@ class Loader {
         this.load('GET', endpoint, callback, options);
     }
 
-    errorHandler(res: Response) {
+    private errorHandler(res: Response) {
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
+            if (res.status === Erorrs.unauthorized || res.status === Erorrs.notFound)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
             throw Error(res.statusText);
         }
@@ -32,7 +32,7 @@ class Loader {
         return res;
     }
 
-    makeUrl(options: TOptions | Record<string, never>, endpoint: string) {
+    private makeUrl(options: TOptions, endpoint: string) {
         const urlOptions: Record<string, string> = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -43,7 +43,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string, callback: TCallback, options: TOptions | Record<string, never> = {}) {
+    private load(method: string, endpoint: string, callback: TCallback, options: TOptions = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler.bind(this))
             .then((res) => res.json())
