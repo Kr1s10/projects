@@ -2,6 +2,12 @@ body {
     color: #fff;
     background: #17181c;
     font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 header {
@@ -13,23 +19,61 @@ header h1 {
     font-weight: 800;
 }
 
+main {
+    margin-bottom: 10vh;
+}
+
 footer {
     height: 100px;
+    background: #439dc0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-footer .copyright {
-    font-size: 14px;
-    color: #333;
-    text-align: center;
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 75%;
 }
-footer .copyright a {
-    color: #444;
+
+.rs-school-logo {
+    width: 6rem;
 }
-footer .copyright a:hover {
-    color: #555;
+
+.year {
+    color: #000;
 }
-footer .copyright:before {
-    content: '©';
+
+@media (max-width: 500px) {
+    header h1 {
+        font-size: 30px;
+        font-weight: 800;
+        text-align: center;
+    }
+
+    main {
+        margin-bottom: 5vh;
+    }
+
+    footer {
+        height: 70px;
+    }
+
+    .footer {
+        width: 90%;
+    }
+
+    .rs-school-logo {
+        width: 4rem;
+    }
+
+    .year {
+        font-size: 0.8em;
+    }
+
+    .icon-github {
+        width: 40px;
+    }
 }

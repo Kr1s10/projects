@@ -37,3 +37,9 @@
     font-weight: 400;
     white-space: nowrap;
 }
+
+@media (max-width: 768px) {
+    .sources {
+        justify-content: center;
+    }
+}
