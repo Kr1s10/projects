@@ -14,9 +14,12 @@ class AppController extends AppLoader {
     public getNews(e: Event, callback: TCallback) {
         let target = e.target as HTMLElement;
         const newsContainer = e.currentTarget as HTMLElement;
-
+        console.log(target.parentNode);
         while (target !== newsContainer) {
             if (target.classList.contains('source__item')) {
+                const items = document.querySelectorAll('.source__item');
+                items.forEach((el) => el.classList.remove('active'));
+                target.classList.add('active');
                 const sourceId = target.getAttribute('data-source-id') as string;
                 if (newsContainer.getAttribute('data-source') !== sourceId) {
                     newsContainer.setAttribute('data-source', sourceId);
@@ -33,6 +36,15 @@ class AppController extends AppLoader {
                 return;
             }
             target = target.parentNode as HTMLElement;
+        }
+    }
+
+    public removeNews(e: Event, newsWrapper: HTMLDivElement) {
+        const target = e.target as HTMLElement;
+        if (target.classList.contains('news-wrapper')) {
+            const sourceItems = document.querySelectorAll('.source__item');
+            newsWrapper.classList.remove('active');
+            sourceItems.forEach((el) => el.classList.remove('active'));
         }
     }
 }
