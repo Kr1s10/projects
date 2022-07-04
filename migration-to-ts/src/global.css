@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     color: #fff;
     background: #17181c;
@@ -27,6 +31,23 @@ main {
     margin-bottom: 10vh;
 }
 
+.icon-up {
+    position: fixed;
+    right: 50px;
+    bottom: 110px;
+    width: 48px;
+    height: 48px;
+    background-color: #30c5ff;
+    border-radius: 50%;
+    background-image: url(https://img.icons8.com/external-those-icons-lineal-those-icons/48/00000/external-up-arrows-those-icons-lineal-those-icons-1.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.icon-up:hover {
+    background-image: url(https://img.icons8.com/external-those-icons-lineal-those-icons/48/ffffff/external-up-arrows-those-icons-lineal-those-icons-1.png);
+}
+
 footer {
     height: 100px;
     background: #439dc0;
@@ -50,6 +71,13 @@ footer {
     color: #000;
 }
 
+@media (max-width: 768px) {
+    .icon-up {
+        right: 30px;
+        bottom: 70px;
+    }
+}
+
 @media (max-width: 500px) {
     header h1 {
         font-size: 30px;
@@ -59,6 +87,10 @@ footer {
 
     main {
         margin-bottom: 5vh;
+    }
+
+    .icon-up {
+        right: 15px;
     }
 
     footer {
