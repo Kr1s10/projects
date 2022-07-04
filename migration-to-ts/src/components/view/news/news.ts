@@ -3,7 +3,7 @@ import { IArticle } from '../../../types/interfaces';
 
 class News {
     draw(data: IArticle[]) {
-        const news = data.length >= 5 ? data.filter((_item, idx) => idx < 5) : data;
+        const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment = document.createDocumentFragment();
         const newsItemTemp = document.querySelector('#newsItemTemp') as HTMLTemplateElement;
@@ -35,6 +35,7 @@ class News {
 
         const newsWrapper = document.querySelector('.news-wrapper') as HTMLDivElement;
         newsWrapper.classList.add('active');
+        document.body.classList.add('lock');
 
         (document.querySelector('.news') as HTMLDivElement).innerHTML = '';
         (document.querySelector('.news') as HTMLDivElement).appendChild(fragment);

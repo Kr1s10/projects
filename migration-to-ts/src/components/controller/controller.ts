@@ -44,6 +44,7 @@ class AppController extends AppLoader {
         if (target.classList.contains('news-wrapper')) {
             const sourceItems = document.querySelectorAll('.source__item');
             newsWrapper.classList.remove('active');
+            document.body.classList.remove('lock');
             sourceItems.forEach((el) => el.classList.remove('active'));
         }
     }
