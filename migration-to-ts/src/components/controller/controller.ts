@@ -41,7 +41,7 @@ class AppController extends AppLoader {
 
     public removeNews(e: Event, newsWrapper: HTMLDivElement) {
         const target = e.target as HTMLElement;
-        if (target.classList.contains('news-wrapper')) {
+        if (target.classList.contains('news-wrapper') || target.closest('.close-btn')) {
             const sourceItems = document.querySelectorAll('.source__item');
             newsWrapper.classList.remove('active');
             document.body.classList.remove('lock');

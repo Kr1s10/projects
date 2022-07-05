@@ -27,6 +27,34 @@
     display: flex;
 }
 
+.news-with-btn {
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: -35px;
+    right: -20px;
+    background: transparent;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+}
+
+.close-btn:hover .close-icon {
+    background-image: url(https://img.icons8.com/fluency-systems-regular/48/30c5ff/delete-sign--v1.png);
+}
+
+.close-icon {
+    width: 24px;
+    height: 24px;
+    background-image: url(https://img.icons8.com/fluency-systems-regular/48/ffffff/delete-sign--v1.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .news {
     overflow-y: auto;
     height: 80vh;
@@ -205,7 +233,7 @@
 }
 
 @media (max-width: 768px) {
-    .news {
+    .news-with-btn {
         max-width: 80%;
     }
 
@@ -220,7 +248,18 @@
 }
 
 @media (max-width: 500px) {
-    .news {
+    .news-with-btn {
         max-width: 90%;
+    }
+
+    .close-btn {
+        top: -30px;
+        right: -10px;
+    }
+
+    .close-btn,
+    .close-icon {
+        width: 20px;
+        height: 20px;
     }
 }
