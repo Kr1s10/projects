@@ -33,7 +33,8 @@ export interface IData {
     articles: IArticle[];
 }
 
-export type TCallback = (() => void) | ((data: ISourses) => void) | ((data: IData) => void);
+export type TDraw<T> = (data: T) => void;
+export type TCallback = (() => void) | TDraw<ISourses> | TDraw<IData>;
 
 export enum Erorrs {
     unauthorized = 401,

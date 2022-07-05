@@ -1,8 +1,8 @@
 import AppLoader from './appLoader';
-import { TCallback } from '../../types/interfaces';
+import { IData, ISourses, TDraw } from '../../types/interfaces';
 
 class AppController extends AppLoader {
-    public getSources(callback: TCallback) {
+    public getSources(callback: TDraw<ISourses>) {
         super.getResp(
             {
                 endpoint: 'sources',
@@ -11,10 +11,9 @@ class AppController extends AppLoader {
         );
     }
 
-    public getNews(e: Event, callback: TCallback) {
+    public getNews(e: Event, callback: TDraw<IData>) {
         let target = e.target as HTMLElement;
         const newsContainer = e.currentTarget as HTMLElement;
-        console.log(target.parentNode);
         while (target !== newsContainer) {
             if (target.classList.contains('source__item')) {
                 const items = document.querySelectorAll('.source__item');
