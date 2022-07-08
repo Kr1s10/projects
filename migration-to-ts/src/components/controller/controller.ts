@@ -1,17 +1,19 @@
 import AppLoader from './appLoader';
-import { IData, ISourses, TDraw } from '../../types/interfaces';
+import { IData, ISources } from '../../types/interfaces';
+import { TDraw } from '../../types/types';
+import { Endpoints } from '../../types/constants';
 
 class AppController extends AppLoader {
-    public getSources(callback: TDraw<ISourses>) {
+    public getSources(callback: TDraw<ISources>): void {
         super.getResp(
             {
-                endpoint: 'sources',
+                endpoint: Endpoints.sources,
             },
             callback
         );
     }
 
-    public getNews(e: Event, callback: TDraw<IData>) {
+    public getNews(e: Event, callback: TDraw<IData>): void {
         let target = e.target as HTMLElement;
         const newsContainer = e.currentTarget as HTMLElement;
         while (target !== newsContainer) {
@@ -24,7 +26,7 @@ class AppController extends AppLoader {
                     newsContainer.setAttribute('data-source', sourceId);
                     super.getResp(
                         {
-                            endpoint: 'everything',
+                            endpoint: Endpoints.everything,
                             options: {
                                 sources: sourceId,
                             },
@@ -38,7 +40,7 @@ class AppController extends AppLoader {
         }
     }
 
-    public removeNews(e: Event, newsWrapper: HTMLDivElement) {
+    public removeNews(e: Event, newsWrapper: HTMLDivElement): void {
         const target = e.target as HTMLElement;
         if (target.classList.contains('news-wrapper') || target.closest('.close-btn')) {
             const sourceItems = document.querySelectorAll('.source__item');

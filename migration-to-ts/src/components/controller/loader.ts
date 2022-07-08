@@ -1,8 +1,6 @@
-import { IData, ISourses, TCallback, Erorrs } from '../../types/interfaces';
-type TOptions = Partial<{
-    apiKey: string;
-    sources: string;
-}>;
+import { HTTPStatusCodes } from '../../types/constants';
+import { IData, ISources } from '../../types/interfaces';
+import { TOptions, TgetRespObj, TRecordString, TCallback } from '../../types/types';
 
 class Loader {
     private readonly baseLink: string;
@@ -14,17 +12,17 @@ class Loader {
     }
 
     public getResp(
-        { endpoint, options = {} }: { endpoint: string; options?: TOptions },
+        { endpoint, options = {} }: TgetRespObj,
         callback: TCallback = () => {
             console.error('No callback for GET response');
         }
-    ) {
+    ): void {
         this.load('GET', endpoint, callback, options);
     }
 
-    private errorHandler(res: Response) {
+    private errorHandler(res: Response): Response | never {
         if (!res.ok) {
-            if (res.status === Erorrs.unauthorized || res.status === Erorrs.notFound)
+            if (res.status === HTTPStatusCodes.unauthorized || res.status === HTTPStatusCodes.notFound)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
             throw Error(res.statusText);
         }
@@ -32,8 +30,8 @@ class Loader {
         return res;
     }
 
-    private makeUrl(options: TOptions, endpoint: string) {
-        const urlOptions: Record<string, string> = { ...this.options, ...options };
+    private makeUrl(options: TOptions, endpoint: string): string {
+        const urlOptions: TRecordString = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {
@@ -43,11 +41,11 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    private load(method: string, endpoint: string, callback: TCallback, options: TOptions = {}) {
+    private load(method: string, endpoint: string, callback: TCallback, options: TOptions = {}): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler.bind(this))
             .then((res) => res.json())
-            .then((data: IData | ISourses) => callback(data as IData & ISourses))
+            .then((data: IData | ISources) => callback(data as IData & ISources))
             .catch((err) => console.error(err));
     }
 }
