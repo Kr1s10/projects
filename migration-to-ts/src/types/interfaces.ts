@@ -1,4 +1,4 @@
-export interface ISourse {
+export interface ISource {
     id: string;
     name: string;
     description: string;
@@ -8,16 +8,13 @@ export interface ISourse {
     country: string;
 }
 
-export interface ISourses {
+export interface ISources {
     status: string;
-    sources: ISourse[];
+    sources: ISource[];
 }
 
 export interface IArticle {
-    source: {
-        id: string;
-        name: string;
-    };
+    source: Tsource;
     author: string;
     title: string;
     description: string;
@@ -33,10 +30,7 @@ export interface IData {
     articles: IArticle[];
 }
 
-export type TDraw<T> = (data: T) => void;
-export type TCallback = (() => void) | TDraw<ISourses> | TDraw<IData>;
-
-export enum Erorrs {
-    unauthorized = 401,
-    notFound = 404,
-}
+type Tsource = {
+    id: string;
+    name: string;
+};
