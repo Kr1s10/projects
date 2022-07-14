@@ -36,12 +36,12 @@ const baseConfig = {
             template: path.resolve(__dirname, './src/index.html'),
             filename: 'index.html',
         }),
-        // new CopyPlugin({
-        //     patterns: [{
-        //         from: path.resolve(__dirname, './src/assets'),
-        //         to: 'assets',
-        //      },],
-        // }),
+        new CopyPlugin({
+            patterns: [{
+                from: path.resolve(__dirname, './src/assets'),
+                to: 'assets',
+             },],
+        }),
         new CleanWebpackPlugin(),
         new EslingPlugin({ extensions: 'ts' }),
     ],
