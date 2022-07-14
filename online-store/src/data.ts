@@ -1,4 +1,6 @@
-export const data = [
+import { ICard } from './types/interface';
+
+export const data: ICard[] = [
     {
         id: 1,
         name: 'Властелин Колец: Братство Кольца',
