@@ -1,0 +1,101 @@
+$light-purple: #a891a4;
+$basic-purple: #7a5675;
+$white: #ffffff;
+$heading-font: 'Playfair Display', serif;
+
+.book-cards {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2%;
+}
+
+.book-card {
+  position: relative;
+  display: flex;
+  width: 49%;
+  background: $white;
+  font-family: $heading-font;
+  padding: 15px;
+  padding-bottom: 60px;
+  margin-bottom: 2%;
+  border-radius: 10px;
+  transition: all 0.3s;
+  &:hover {
+    box-shadow: 0 0 15px 3px rgb(168, 168, 168);
+  }
+}
+
+.book-card__img {
+  width: 35%;
+  img {
+    width: 100%;
+  }
+}
+
+.book-card__content {
+  color: #4b3547;
+  width: 65%;
+  margin-left: 2%;
+}
+
+.book-card__author {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.book-card__title {
+  font-size: 20px;
+  margin: 10px 0 15px;
+}
+
+.list-description__item {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.category {
+  border-bottom: 1px solid #4b3547;
+}
+
+.semicolon {
+  font-weight: 500;
+}
+
+.book-card__price {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  right: 0;
+  bottom: 0;
+  padding: 15px;
+  width: 100%;
+}
+
+.price {
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.buy-btn {
+  color: $white;
+  width: 150px;
+  background: $basic-purple;
+  border: 2px solid $basic-purple;
+  padding: 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    background: $light-purple;
+    border-color: $light-purple;
+  }
+  &.active {
+    background: transparent;
+    color: #4b3547;
+  }
+}

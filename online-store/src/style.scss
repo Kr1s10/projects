@@ -10,7 +10,6 @@ $heading-font: 'Playfair Display', serif;
 * {
   box-sizing: border-box;
   font-family: $regular-font;
-  color: $white;
 }
 
 html {
@@ -134,13 +133,15 @@ main {
 }
 
 .sidebar {
-  max-width: 25%;
+  min-width: 21.5%;
+  color: $white;
   background: rgba(122, 86, 117, 0.8);
   border-radius: 15px;
   padding: 10px 15px;
 }
 
 .sort__select {
+  width: 100%;
   font-size: 15px;
   background: $white;
   color: $dark-purple;
@@ -186,9 +187,10 @@ li {
   gap: 10px;
   align-items: center;
   button {
+    color: $white;
     background: #755471;
     border: none;
-    width: 65%;
+    width: 85%;
     padding: 10px;
     border-radius: 15px;
     cursor: pointer;
@@ -200,13 +202,7 @@ li {
 }
 
 .main {
-  border: 1px solid #be62b2;
   flex-grow: 1;
-}
-
-.book-cards {
-  width: 90%;
-  margin: 50px auto;
 }
 
 footer {
