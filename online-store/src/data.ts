@@ -1,6 +1,6 @@
 import { ICard } from './types/interface';
 
-export const data: ICard[] = [
+const data: ICard[] = [
     {
         id: 1,
         name: 'Властелин Колец: Братство Кольца',
@@ -338,3 +338,5 @@ export const data: ICard[] = [
         lang: 'Английский',
     },
 ];
+
+export default data;
