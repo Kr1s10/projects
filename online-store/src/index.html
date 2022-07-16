@@ -38,10 +38,18 @@
         <section class="slider-price">
           <h3 class="slider-price__title">Цена</h3>
           <div class="slider-price__slider"></div>
+          <div class="slider-inputs">
+            <input class="slider-input" id="input-price_low" value="0" type="number" min="0">
+            <input class="slider-input" id="input-price_high" value type="number" min="1">
+          </div>
         </section>
         <section class="slider-date">
           <h3 class="slider-date__title">Год издания</h3>
           <div class="slider-date__slider"></div>
+          <div class="slider-inputs">
+            <input class="slider-input" id="input-date_low" value="2008" type="number" min="2008" max="2022" size="4">
+            <input class="slider-input" id="input-date_high" value="2022" type="number" min="2008" max="2022" size="4">
+          </div>
         </section>
         <section class="filters">
           <h2 class="filters__title">Фильтры по параметрам</h2>
@@ -304,5 +312,6 @@
       </div>
     </div>
   </template>
+
 </body>
 </html>
