@@ -10,3 +10,12 @@ export interface ICard {
     pages: number;
     lang: string;
 }
+
+export type TOPtions = {
+    search: string;
+    sliderPrice: number[];
+    sliderDate: number[];
+    genre: HTMLInputElement[];
+    lang: HTMLInputElement[];
+    binding: HTMLInputElement[];
+};

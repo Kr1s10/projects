@@ -1,6 +1,5 @@
 import './style.scss';
-import data from './data';
-import { AppView } from './components/view/appView';
+import { App } from './components/app/app';
 
-const app = new AppView();
-app.drawCards(data);
+const app = new App();
+app.init();

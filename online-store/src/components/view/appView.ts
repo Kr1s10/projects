@@ -3,8 +3,8 @@ import { Cards } from './cards/cards';
 import { ICard } from '../../types/interface';
 
 export class AppView {
-    private readonly sliderPrice: Slider;
-    private readonly sliderDate: Slider;
+    readonly sliderPrice: Slider;
+    readonly sliderDate: Slider;
     private readonly cards: Cards;
 
     constructor() {
