@@ -1,7 +1,7 @@
 import './cards.scss';
 import { ICard } from '../../../types/interface';
 
-export class Card {
+export class Cards {
     public draw(data: ICard[]): void {
         const fragment = document.createDocumentFragment();
         const cardTemp = document.querySelector('#cardTemp') as HTMLTemplateElement;
