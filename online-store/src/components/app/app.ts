@@ -65,7 +65,7 @@ export class App {
             if (target.classList.contains('active')) {
                 this.removeInCart(target, btnId);
             } else {
-                if (this.cart.length < 10) {
+                if (this.cart.length < 20) {
                     this.addInCart(target, btnId);
                 } else {
                     alert('Извините, все слоты заполнены :(');
@@ -158,6 +158,10 @@ export class App {
 
         const filteredData = this.constroller.filter(data, options);
         const sortedData: ICard[] = this.constroller.sort(filteredData);
-        this.view.drawCards(sortedData, this.cart);
+        if (!sortedData.length) {
+            this.cardsWrapper.innerHTML = 'Извините, совпадений не обнаружено';
+        } else {
+            this.view.drawCards(sortedData, this.cart);
+        }
     }
 }

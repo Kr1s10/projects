@@ -48,6 +48,7 @@ footer {
 
 header {
   background: $basic-purple;
+  border-bottom: 1px solid #eeeeee;
   position: sticky;
   top: 0;
   z-index: 2;
@@ -129,12 +130,12 @@ main {
  background: #eeeeee;
  .wrapper {
   align-items: flex-start;
-  padding-top: 50px;
+  padding: 50px 0;
  }
 }
 
 .sidebar {
-  min-width: 21.5%;
+  width: 21.5%;
   color: $white;
   background: rgba(122, 86, 117, 0.8);
   border-radius: 15px;
@@ -203,7 +204,7 @@ li {
 }
 
 .main {
-  flex-grow: 1;
+  width: 78.5%;
 }
 
 footer {
@@ -231,4 +232,24 @@ footer {
 
 .year {
   color: #000000;
+}
+
+@media (max-width: 1200px) {
+  .sidebar {
+    width: 26%;
+  }
+
+  .main {
+    width: 74%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .sidebar {
+    width: 35%;
+  }
+
+  .main {
+    width: 65%;
+  }
 }
