@@ -12,10 +12,9 @@ export interface ICard {
 }
 
 export type TOPtions = {
+    sort: string;
     search: string;
     sliderPrice: number[];
     sliderDate: number[];
-    genre: HTMLInputElement[];
-    lang: HTMLInputElement[];
-    binding: HTMLInputElement[];
+    checkboxes: boolean[];
 };

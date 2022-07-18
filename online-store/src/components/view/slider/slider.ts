@@ -1,15 +1,17 @@
 import '../../../libs/nouislider/nouislider.min.css';
-import * as noUiSlider from 'nouislider';
 import './slider.scss';
+import * as noUiSlider from 'nouislider';
 
 export class Slider {
     public slider: noUiSlider.target;
+    public values: number[];
     private type: string;
-    values: number[];
-    inputs: HTMLInputElement[];
+    private minmax: number[];
+    private inputs: HTMLInputElement[];
 
-    constructor(values: number[], type: string) {
-        this.values = values;
+    constructor(values: number[], minmax: number[], type: string, option?: number[]) {
+        this.values = option || values;
+        this.minmax = minmax;
         this.type = type;
         this.slider = document.querySelector(`.slider-${type}__slider`) as noUiSlider.target;
         this.inputs = [
@@ -24,12 +26,12 @@ export class Slider {
             start: this.values,
             connect: true,
             range: {
-                min: this.values[0],
-                max: this.values[1],
+                min: this.minmax[0],
+                max: this.minmax[1],
             },
             step: 1,
             format: {
-                from: (value) => parseInt(value),
+                from: (value) => Number(value),
                 to: (value) => Math.round(value),
             },
         });

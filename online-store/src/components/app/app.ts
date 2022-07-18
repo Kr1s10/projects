@@ -1,57 +1,163 @@
 import { AppView } from '../view/appView';
 import { Controller } from '../controller/controller';
 import { ICard, TOPtions } from '../../types/interface';
+import { LocalStorageService } from '../../services/localStorageService';
 import data from '../../data';
 
 export class App {
-    view: AppView;
-    constroller: Controller;
-    defaultOptions: TOPtions;
-    searchField: HTMLInputElement;
-    select: HTMLSelectElement;
+    private view: AppView;
+    private constroller: Controller;
+    private defaultOptions: TOPtions;
+    private options: TOPtions;
+    private searchField: HTMLInputElement;
+    private select: HTMLSelectElement;
+    private checkboxes: NodeListOf<HTMLInputElement>;
+    private filters: HTMLDivElement;
+    private resetFilterBtn: HTMLButtonElement;
+    private resetAllBtn: HTMLButtonElement;
+    private cart: string[];
+    private cartDiv: HTMLSpanElement;
+    private cardsWrapper: HTMLDivElement;
 
     constructor() {
         this.view = new AppView();
         this.constroller = new Controller();
         this.defaultOptions = {
+            sort: 'nameAZ',
             search: '',
             sliderPrice: this.view.sliderPrice.values,
             sliderDate: this.view.sliderDate.values,
-            genre: (document.querySelectorAll('.genre-list__input') as unknown) as HTMLInputElement[],
-            lang: (document.querySelectorAll('.lang-list__input') as unknown) as HTMLInputElement[],
-            binding: (document.querySelectorAll('.binding-list__input') as unknown) as HTMLInputElement[],
+            checkboxes: [],
         };
+        this.options =
+            LocalStorageService.getItem<TOPtions>('options') ||
+            (JSON.parse(JSON.stringify(this.defaultOptions)) as TOPtions);
+        this.cart = LocalStorageService.getItem('cart') || [];
         this.searchField = document.querySelector('.search__input') as HTMLInputElement;
         this.select = document.querySelector('.sort__select') as HTMLSelectElement;
+        this.checkboxes = document.querySelectorAll('.filters input[type="checkbox"]');
+        this.filters = document.querySelector('.filters') as HTMLDivElement;
+        this.resetFilterBtn = document.querySelector('.reset-filters-btn') as HTMLButtonElement;
+        this.resetAllBtn = document.querySelector('.reset-all-btn') as HTMLButtonElement;
+        this.cartDiv = document.querySelector('.cart-number') as HTMLSpanElement;
+        this.cardsWrapper = document.querySelector('.book-cards') as HTMLDivElement;
     }
 
-    init() {
-        this.draw(this.defaultOptions);
+    public init(): void {
+        this.draw(this.options);
 
+        this.sliderEvents();
         this.select.addEventListener('change', this.sortHandler);
-
-        this.view.sliderPrice.slider.noUiSlider?.on('change', this.sliderHandler);
-        this.view.sliderPrice.inputs.forEach((input) => {
-            input.addEventListener('change', this.sliderHandler);
-        });
-
-        this.view.sliderDate.slider.noUiSlider?.on('change', this.sliderHandler);
-        this.view.sliderDate.inputs.forEach((input) => {
-            input.addEventListener('change', this.sliderHandler);
+        this.filters.addEventListener('click', this.filterHandler);
+        this.searchField.addEventListener('input', this.searchHandler);
+        this.cardsWrapper.addEventListener('click', this.cartHandler);
+        this.resetFilterBtn.addEventListener('click', this.resetFiltersHandler);
+        this.resetAllBtn.addEventListener('click', () => {
+            LocalStorageService.clear();
+            location.reload();
         });
     }
 
-    sortHandler = () => {
-        this.draw(this.defaultOptions, this.select.value);
+    private cartHandler = (e: Event): void => {
+        const target = e.target as HTMLElement;
+        if (target.classList.contains('buy-btn')) {
+            const btnId = target.dataset.id as string;
+            if (target.classList.contains('active')) {
+                this.removeInCart(target, btnId);
+            } else {
+                if (this.cart.length < 10) {
+                    this.addInCart(target, btnId);
+                } else {
+                    alert('Извините, все слоты заполнены :(');
+                }
+            }
+            LocalStorageService.setItem('cart', this.cart);
+        }
+        this.saveAndDraw();
     };
 
-    sliderHandler = () => {
-        this.draw(this.defaultOptions);
+    private addInCart(target: HTMLElement, id: string): void {
+        target.innerHTML = 'Добавлено!';
+        target.classList.add('active');
+        this.cart.push(id);
+    }
+
+    private removeInCart(target: HTMLElement, id: string): void {
+        target.innerHTML = 'В корзину';
+        target.classList.remove('active');
+        this.cart.splice(this.cart.indexOf(id), 1);
+    }
+
+    private resetFiltersHandler = (): void => {
+        this.options.checkboxes = [];
+        this.options.search = '';
+        this.searchField.value = '';
+        this.view.sliderPrice.slider.noUiSlider?.set([0, 845]);
+        this.view.sliderDate.slider.noUiSlider?.set([2008, 2022]);
+        this.saveAndDraw();
     };
 
-    draw(options: TOPtions, typeSort?: string) {
+    private searchHandler = (): void => {
+        this.options.search = this.searchField.value;
+        this.saveAndDraw();
+    };
+
+    private filterHandler = (e: Event): void => {
+        const target = e.target as HTMLInputElement;
+        if (target.type) {
+            const checkboxesChecked: boolean[] = [];
+            this.checkboxes.forEach((chbox, idx) => {
+                checkboxesChecked[idx] = chbox.checked;
+            });
+            this.options.checkboxes = checkboxesChecked;
+            this.saveAndDraw();
+        }
+    };
+
+    private sortHandler = (): void => {
+        this.options.sort = this.select.value;
+        this.saveAndDraw();
+    };
+
+    private saveAndDraw(): void {
+        LocalStorageService.setItem<TOPtions>('options', this.options);
+        this.draw(this.options);
+    }
+
+    private sliderEvents(): void {
+        this.view.sliderPrice.slider.noUiSlider?.on('change', (values, handle) => {
+            this.options.sliderPrice[handle] = +values[handle];
+            this.saveAndDraw();
+        });
+
+        this.view.sliderDate.slider.noUiSlider?.on('change', (values, handle) => {
+            this.options.sliderDate[handle] = +values[handle];
+            this.saveAndDraw();
+        });
+
+        this.view.sliderPrice.slider.noUiSlider?.on('set', () => {
+            const priceRange = this.view.sliderPrice.slider.noUiSlider?.get();
+            this.options.sliderPrice = priceRange as number[];
+            this.saveAndDraw();
+        });
+
+        this.view.sliderDate.slider.noUiSlider?.on('set', () => {
+            const dateRange = this.view.sliderDate.slider.noUiSlider?.get();
+            this.options.sliderDate = dateRange as number[];
+            this.saveAndDraw();
+        });
+    }
+
+    private draw(options: TOPtions): void {
+        const sort = LocalStorageService.getItem<TOPtions>('options')?.sort;
+        const search = LocalStorageService.getItem<TOPtions>('options')?.search;
+        this.cartDiv.innerHTML = `${this.cart.length}`;
+
+        if (sort) this.select.value = sort;
+        if (search) this.searchField.value = search;
+
         const filteredData = this.constroller.filter(data, options);
-        const sortedData: ICard[] = this.constroller.sort(filteredData, typeSort);
-        this.view.drawCards(sortedData);
+        const sortedData: ICard[] = this.constroller.sort(filteredData);
+        this.view.drawCards(sortedData, this.cart);
     }
 }

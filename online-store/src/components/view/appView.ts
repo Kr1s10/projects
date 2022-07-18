@@ -1,6 +1,7 @@
 import { Slider } from './slider/slider';
 import { Cards } from './cards/cards';
-import { ICard } from '../../types/interface';
+import { ICard, TOPtions } from '../../types/interface';
+import { LocalStorageService } from '../../services/localStorageService';
 
 export class AppView {
     readonly sliderPrice: Slider;
@@ -9,11 +10,12 @@ export class AppView {
 
     constructor() {
         this.cards = new Cards();
-        this.sliderPrice = new Slider([0, 845], 'price');
-        this.sliderDate = new Slider([2008, 2022], 'date');
+        const options = LocalStorageService.getItem<TOPtions>('options');
+        this.sliderPrice = new Slider([0, 845], [0, 845], 'price', options?.sliderPrice);
+        this.sliderDate = new Slider([2008, 2022], [2008, 2022], 'date', options?.sliderDate);
     }
 
-    public drawCards(data: ICard[]) {
-        this.cards.draw(data);
+    public drawCards(data: ICard[], cart: string[]) {
+        this.cards.draw(data, cart);
     }
 }

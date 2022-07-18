@@ -2,7 +2,7 @@ import './cards.scss';
 import { ICard } from '../../../types/interface';
 
 export class Cards {
-    public draw(data: ICard[]): void {
+    public draw(data: ICard[], cart: string[]): void {
         const fragment = document.createDocumentFragment();
         const cardTemp = document.querySelector('#cardTemp') as HTMLTemplateElement;
         const cardsWrapper = document.querySelector('.book-cards') as HTMLDivElement;
@@ -18,6 +18,7 @@ export class Cards {
             const pages = cardClone.querySelector('#pages') as HTMLSpanElement;
             const binding = cardClone.querySelector('#binding') as HTMLSpanElement;
             const price = cardClone.querySelector('.price') as HTMLSpanElement;
+            const buyBtn = cardClone.querySelector('.buy-btn') as HTMLButtonElement;
 
             author.textContent = item.author;
             title.textContent = item.name;
@@ -29,6 +30,12 @@ export class Cards {
             pages.textContent = `${item.pages}`;
             binding.textContent = item.binding;
             price.textContent = `${item.price} грн`;
+            buyBtn.dataset.id = `${item.id}`;
+
+            if (cart.some((id) => id === item.id.toString())) {
+                buyBtn.innerText = 'Добавлено!';
+                buyBtn.classList.add('active');
+            }
 
             fragment.append(cardClone);
         });
