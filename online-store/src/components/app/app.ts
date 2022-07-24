@@ -3,6 +3,7 @@ import { Controller } from '../controller/controller';
 import { ICard, TOPtions } from '../../types/interface';
 import { LocalStorageService } from '../../services/localStorageService';
 import data from '../../data';
+import { maxNumberInCart, defaultDateValues, defaultPriceValues, Message } from '../../types/constants';
 
 export class App {
     private view: AppView;
@@ -65,10 +66,10 @@ export class App {
             if (target.classList.contains('active')) {
                 this.removeInCart(target, btnId);
             } else {
-                if (this.cart.length < 20) {
+                if (this.cart.length < maxNumberInCart) {
                     this.addInCart(target, btnId);
                 } else {
-                    alert('Извините, все слоты заполнены :(');
+                    alert(Message.fullCart);
                 }
             }
             LocalStorageService.setItem('cart', this.cart);
@@ -77,13 +78,13 @@ export class App {
     };
 
     private addInCart(target: HTMLElement, id: string): void {
-        target.innerHTML = 'Добавлено!';
+        target.innerHTML = Message.addInCart;
         target.classList.add('active');
         this.cart.push(id);
     }
 
     private removeInCart(target: HTMLElement, id: string): void {
-        target.innerHTML = 'В корзину';
+        target.innerHTML = Message.removeInCart;
         target.classList.remove('active');
         this.cart.splice(this.cart.indexOf(id), 1);
     }
@@ -92,8 +93,8 @@ export class App {
         this.options.checkboxes = [];
         this.options.search = '';
         this.searchField.value = '';
-        this.view.sliderPrice.slider.noUiSlider?.set([0, 845]);
-        this.view.sliderDate.slider.noUiSlider?.set([2008, 2022]);
+        this.view.sliderPrice.slider.noUiSlider?.set(defaultPriceValues);
+        this.view.sliderDate.slider.noUiSlider?.set(defaultDateValues);
         this.saveAndDraw();
     };
 
@@ -125,13 +126,13 @@ export class App {
     }
 
     private sliderEvents(): void {
-        this.view.sliderPrice.slider.noUiSlider?.on('change', (values, handle) => {
-            this.options.sliderPrice[handle] = +values[handle];
+        this.view.sliderPrice.slider.noUiSlider?.on('change', (values, inputIndex) => {
+            this.options.sliderPrice[inputIndex] = Number(values[inputIndex]);
             this.saveAndDraw();
         });
 
-        this.view.sliderDate.slider.noUiSlider?.on('change', (values, handle) => {
-            this.options.sliderDate[handle] = +values[handle];
+        this.view.sliderDate.slider.noUiSlider?.on('change', (values, inputIndex) => {
+            this.options.sliderDate[inputIndex] = Number(values[inputIndex]);
             this.saveAndDraw();
         });
 
@@ -159,7 +160,7 @@ export class App {
         const filteredData = this.constroller.filter(data, options);
         const sortedData: ICard[] = this.constroller.sort(filteredData);
         if (!sortedData.length) {
-            this.cardsWrapper.innerHTML = 'Извините, совпадений не обнаружено';
+            this.cardsWrapper.innerHTML = Message.noCoincidences;
         } else {
             this.view.drawCards(sortedData, this.cart);
         }

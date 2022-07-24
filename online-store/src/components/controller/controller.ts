@@ -3,28 +3,28 @@ import { ICard, TOPtions } from '../../types/interface';
 
 export class Controller {
     public sort(data: ICard[]): ICard[] {
-        let sortData: ICard[] = data;
+        let sortData: ICard[] = [...data];
         const type = LocalStorageService.getItem<TOPtions>('options')?.sort || 'nameAZ';
         if (type.includes('name')) {
-            sortData = data.sort((a, b) => a.name.localeCompare(b.name));
+            sortData = sortData.sort((a, b) => a.name.localeCompare(b.name));
             return type === 'nameAZ' ? sortData : sortData.reverse();
         }
 
-        if (type === 'priceLowFirst') sortData = data.sort((a, b) => a.price - b.price);
-        if (type === 'priceHighFirst') sortData = data.sort((a, b) => b.price - a.price);
+        if (type === 'priceLowFirst') sortData = sortData.sort((a, b) => a.price - b.price);
+        if (type === 'priceHighFirst') sortData = sortData.sort((a, b) => b.price - a.price);
 
         return sortData;
     }
 
     public filter(data: ICard[], options: TOPtions): ICard[] {
-        let filterData = options.search ? data.filter((card) => this.filterSearch(card, options.search)) : data;
+        let filterData = options.search ? data.filter((card) => this.filterSearch(card, options.search)) : [...data];
         filterData = filterData.filter((card) => this.filterPriceSlider(card, options.sliderPrice));
         filterData = filterData.filter((card) => this.filterDateSlider(card, options.sliderDate));
         const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll('.filters input[type="checkbox"]');
         const checkboxesChecked = options.checkboxes;
         if (checkboxesChecked) {
-            checkboxes.forEach((el, idx) => {
-                el.checked = checkboxesChecked[idx];
+            checkboxes.forEach((checkbox, idx) => {
+                checkbox.checked = checkboxesChecked[idx];
             });
         }
         filterData = this.filterCheckboxGenre(filterData);
