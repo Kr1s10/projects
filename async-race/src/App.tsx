@@ -6,6 +6,9 @@ import GaragePage from './routes/GarageRoute';
 import WinnersPage from './routes/WinnersRoute';
 
 function App() {
+  // useEffect(() => {
+  //   GaragePage();
+  // }, []);
   return (
     <>
       <Navigation />
