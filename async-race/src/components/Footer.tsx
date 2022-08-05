@@ -10,7 +10,7 @@ function Footer() {
           <RSSchoolLogo />
         </a>
         <span className="year">Created in 2022</span>
-        <a href="https://rs.school/js/">
+        <a href="https://github.com/Kr1s10">
           <GhLogo />
         </a>
       </div>
