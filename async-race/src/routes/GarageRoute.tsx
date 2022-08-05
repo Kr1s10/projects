@@ -1,7 +1,8 @@
 import React from 'react';
-import Controls from '../components/Controls';
-import Form from '../components/Form';
-import Garage from '../components/Garage';
+import Controls from '../components/garage/Controls';
+import Form from '../components/garage/Form';
+import Garage from '../components/garage/Garage';
+import Pagination from '../components/Pagination';
 
 function GaragePage() {
   return (
@@ -10,6 +11,7 @@ function GaragePage() {
       <Form action="Update" />
       <Controls />
       <Garage />
+      <Pagination />
     </div>
   );
 }

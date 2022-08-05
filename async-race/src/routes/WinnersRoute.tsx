@@ -1,6 +1,6 @@
 import React from 'react';
 import Pagination from '../components/Pagination';
-import Table from '../components/WinnersTable';
+import Table from '../components/winners/WinnersTable';
 
 function WinnersPage() {
   return (

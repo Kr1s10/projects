@@ -1,6 +1,5 @@
 import React from 'react';
 import Car from './Car';
-import Pagination from './Pagination';
 
 function Garage() {
   return (
@@ -13,7 +12,6 @@ function Garage() {
       <div className="message-wrapper">
         <p className="message" />
       </div>
-      <Pagination />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import CarSvg from './svg/CarSvg';
+import CarSvg from '../svg/CarSvg';
 
 function Car() {
   return (
