@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import GaragePage from './routes/GarageRoute';
 import WinnersPage from './routes/WinnersRoute';
+import Footer from './components/Footer';
 
 function App() {
   // useEffect(() => {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<GaragePage />} />
         <Route path="/winners" element={<WinnersPage />} />
       </Routes>
+      <Footer />
     </>
   );
 }
