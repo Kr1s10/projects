@@ -5,7 +5,7 @@ function Winner() {
   return (
     <tr>
       <td>1</td>
-      <td>
+      <td className="car-ceil">
         <CarSvg />
       </td>
       <td>Audi</td>

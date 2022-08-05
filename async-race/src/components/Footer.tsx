@@ -6,11 +6,11 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="wrapper">
-        <a href="https://rs.school/js/">
+        <a className="footer__link" href="https://rs.school/js/">
           <RSSchoolLogo />
         </a>
         <span className="year">Created in 2022</span>
-        <a href="https://github.com/Kr1s10">
+        <a className="footer__link" href="https://github.com/Kr1s10">
           <GhLogo />
         </a>
       </div>

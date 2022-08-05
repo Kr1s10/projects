@@ -6,13 +6,13 @@ import Pagination from '../components/Pagination';
 
 function GaragePage() {
   return (
-    <div className="garageView">
+    <main className="wrapper main">
       <Form action="Create" />
       <Form action="Update" />
       <Controls />
       <Garage />
       <Pagination />
-    </div>
+    </main>
   );
 }
 

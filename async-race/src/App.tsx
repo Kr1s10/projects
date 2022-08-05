@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import { Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import GaragePage from './routes/GarageRoute';
@@ -11,14 +11,14 @@ function App() {
   //   GaragePage();
   // }, []);
   return (
-    <>
+    <div className="App">
       <Navigation />
       <Routes>
         <Route path="/" element={<GaragePage />} />
         <Route path="/winners" element={<WinnersPage />} />
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 

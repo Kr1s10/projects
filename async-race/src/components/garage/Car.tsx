@@ -16,7 +16,7 @@ function Car() {
         </div>
         <div className="road">
           <CarSvg />
-          <img src="./flag.png" alt="flag" />
+          <img className="flag" src="./flag.png" alt="flag" />
         </div>
       </div>
     </li>
