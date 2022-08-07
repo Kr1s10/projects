@@ -22,3 +22,10 @@ export interface IWinner {
   wins: number;
   time: number;
 }
+
+export interface IWinnerWithCar {
+  id?: number;
+  car: ICar;
+  wins: number;
+  time: number;
+}

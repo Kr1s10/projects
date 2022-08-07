@@ -1,7 +1,9 @@
-import BASE_URL from '../types/constants';
-import { IWinner, TOrder, TSort } from '../types/interfaces';
+import { BASE_URL } from '../types/constants';
+import {
+  IWinner, ICar, TOrder, TSort,
+} from '../types/interfaces';
 import CarsServise from './CarsServise';
-import makeURLwithQuery from './MakeURLwithQuery';
+import makeURLwithQuery from '../components/helpers/MakeURLwithQuery';
 
 class WinnersServise {
   private static URL = new URL('winners', BASE_URL);
@@ -19,9 +21,9 @@ class WinnersServise {
     return {
       data: await Promise.all(data.map(async (winner) => ({
         ...winner,
-        car: await CarsServise.getCar(winner.id as number),
+        car: await CarsServise.getCar(winner.id as number) as ICar,
       }))),
-      count: Number(res.headers.get('X-Total-Count')),
+      totalCount: Number(res.headers.get('X-Total-Count')),
     };
   };
 

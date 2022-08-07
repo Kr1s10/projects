@@ -1,6 +1,10 @@
 import React from 'react';
 
-function CarSvg() {
+interface ICarSvg {
+  color: string;
+}
+
+function CarSvg({ color }: ICarSvg) {
   return (
     <div className="car">
       <svg
@@ -13,7 +17,7 @@ function CarSvg() {
       >
         <g
           transform="translate(0.000000,806.000000) scale(0.100000,-0.100000)"
-          fill="#000000"
+          fill={color}
           stroke="none"
         >
           <path d="M5320 8054 c-25 -2 -135 -11 -245 -19 -962 -74 -1778 -278 -2445

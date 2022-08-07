@@ -1,6 +1,6 @@
-import BASE_URL from '../types/constants';
+import { BASE_URL } from '../types/constants';
 import { TStatus } from '../types/interfaces';
-import makeURLwithQuery from './MakeURLwithQuery';
+import makeURLwithQuery from '../components/helpers/MakeURLwithQuery';
 
 class EngineServise {
   private static URL = new URL('engine', BASE_URL);

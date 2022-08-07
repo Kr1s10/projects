@@ -1,6 +1,6 @@
-import BASE_URL from '../types/constants';
+import { BASE_URL } from '../types/constants';
 import { ICar } from '../types/interfaces';
-import makeURLwithQuery from './MakeURLwithQuery';
+import makeURLwithQuery from '../components/helpers/MakeURLwithQuery';
 
 class CarsServise {
   private static URL = new URL('garage', BASE_URL);
@@ -12,7 +12,7 @@ class CarsServise {
 
     return {
       data,
-      count: Number(res.headers.get('X-Total-Count')),
+      totalCount: Number(res.headers.get('X-Total-Count')),
     };
   };
 

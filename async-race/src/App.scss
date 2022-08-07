@@ -88,6 +88,10 @@ $font: 'Rajdhani', sans-serif;
     border: none;
     border-radius: 3px;
     cursor: pointer;
+
+    &:disabled {
+      cursor: auto;
+    }
   }
 }
 
@@ -110,6 +114,13 @@ $font: 'Rajdhani', sans-serif;
     background-color: #ddd;
     color: #ff2d1e;
   }
+
+  &:disabled {
+    color: #a5a5a5;
+    background-color: transparent;
+    border: 2px solid #a5a5a5;
+    cursor: auto;
+  }
 }
 
 .controls {
@@ -131,6 +142,13 @@ $font: 'Rajdhani', sans-serif;
 
     &:hover {
       color: #ff2d1e;
+    }
+
+    &:disabled {
+      color: #a5a5a5;
+      background-color: transparent;
+      border: 2px solid #a5a5a5;
+      cursor: auto;
     }
   }
 }
@@ -156,6 +174,10 @@ $font: 'Rajdhani', sans-serif;
 
 .garage-list__item {
   margin-bottom: 30px;
+
+  &.selected {
+    border: 1px solid #ff0000;
+  }
 }
 
 .car-controls {
@@ -165,6 +187,7 @@ $font: 'Rajdhani', sans-serif;
 }
 
 .car-controls__btn {
+  box-sizing: border-box;
   border: none;
   border-radius: 2px;
   background-color: #ddd;
@@ -173,6 +196,20 @@ $font: 'Rajdhani', sans-serif;
 
   &:hover {
     color: #ff2d1e;
+  }
+
+  &:disabled {
+    &.selected {
+      color: #ff2d1e;
+      background-color: transparent;
+      border: 2px solid #a5a5a5;
+      cursor: auto;
+    }
+
+    color: #a5a5a5;
+    background-color: transparent;
+    border: 2px solid #a5a5a5;
+    cursor: auto;
   }
 }
 
@@ -301,11 +338,11 @@ $font: 'Rajdhani', sans-serif;
 
   tr {
     &:nth-child(even){
-      background: #a5a5a5;
+      background: #ddd;
     }
 
     &:nth-child(odd){
-      background: #ddd;
+      background: #a5a5a5;
     }
 
     td:first-child,

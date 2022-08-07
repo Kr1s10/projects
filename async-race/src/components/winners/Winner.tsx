@@ -1,16 +1,17 @@
 import React from 'react';
+import { IWinnerWithCar } from '../../types/interfaces';
 import CarSvg from '../svg/CarSvg';
 
-function Winner() {
+function Winner({ item, number }: { item: IWinnerWithCar, number: number }) {
   return (
     <tr>
-      <td>1</td>
+      <td>{number}</td>
       <td className="car-ceil">
-        <CarSvg />
+        <CarSvg color={item.car.color} />
       </td>
-      <td>Audi</td>
-      <td>1</td>
-      <td>10</td>
+      <td>{item.car.name}</td>
+      <td>{item.wins}</td>
+      <td>{item.time}</td>
     </tr>
   );
 }

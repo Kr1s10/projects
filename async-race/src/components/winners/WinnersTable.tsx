@@ -1,7 +1,8 @@
 import React from 'react';
+import { IWinnerWithCar } from '../../types/interfaces';
 import Winner from './Winner';
 
-function Table() {
+function Table({ data }: { data: IWinnerWithCar[] }) {
   return (
     <table className="table">
       <thead>
@@ -12,7 +13,7 @@ function Table() {
         <th>Best time (s)</th>
       </thead>
       <tbody>
-        <Winner />
+        {data.map((winner, idx) => <Winner item={winner} number={idx} key={winner.id} />)}
       </tbody>
     </table>
   );

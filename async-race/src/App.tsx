@@ -7,9 +7,6 @@ import WinnersPage from './routes/WinnersRoute';
 import Footer from './components/Footer';
 
 function App() {
-  // useEffect(() => {
-  //   GaragePage();
-  // }, []);
   return (
     <div className="App">
       <Navigation />

@@ -1,4 +1,4 @@
-import { IQuery } from '../types/interfaces';
+import { IQuery } from '../../types/interfaces';
 
 function makeURLwithQuery(url: URL, query: IQuery) {
   const res = new URL(url);
