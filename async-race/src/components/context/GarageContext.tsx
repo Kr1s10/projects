@@ -1,30 +1,40 @@
-import React, { useMemo, useState } from 'react';
+import React, { Dispatch, useMemo, useState } from 'react';
+import { ICar } from '../../types/interfaces';
 
 interface IGarage {
+  initStateCar: ICar;
   garagePage: number;
-  changeGaragePage: (value: number) => void;
+  setGaragePage: Dispatch<number>;
   winnersPage: number;
-  changeWinnersPage: (value: number) => void;
+  setWinnersPage: Dispatch<number>;
+  currentCar: ICar;
+  setCurrentCar: Dispatch<ICar>;
 }
+const initStateCar = { id: 0, name: '', color: '' };
 
 export const GarageContext = React.createContext<IGarage>({
+  initStateCar,
   garagePage: 1,
+  setGaragePage: () => {},
   winnersPage: 1,
-  changeGaragePage: () => {},
-  changeWinnersPage: () => {},
+  setWinnersPage: () => {},
+  currentCar: initStateCar,
+  setCurrentCar: () => {},
 });
 
 export function GarageState({ children }: { children: React.ReactNode }) {
   const [garagePage, setGaragePage] = useState(1);
   const [winnersPage, setWinnersPage] = useState(1);
-  const changeGaragePage = (value: number) => setGaragePage(value);
-  const changeWinnersPage = (value: number) => setWinnersPage(value);
+  const [currentCar, setCurrentCar] = useState<ICar>(initStateCar);
 
   const context = {
+    initStateCar,
     garagePage,
-    changeGaragePage,
+    setGaragePage,
     winnersPage,
-    changeWinnersPage,
+    setWinnersPage,
+    currentCar,
+    setCurrentCar,
   };
 
   return (

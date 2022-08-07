@@ -174,10 +174,6 @@ $font: 'Rajdhani', sans-serif;
 
 .garage-list__item {
   margin-bottom: 30px;
-
-  &.selected {
-    border: 1px solid #ff0000;
-  }
 }
 
 .car-controls {
@@ -198,14 +194,14 @@ $font: 'Rajdhani', sans-serif;
     color: #ff2d1e;
   }
 
-  &:disabled {
-    &.selected {
-      color: #ff2d1e;
-      background-color: transparent;
-      border: 2px solid #a5a5a5;
-      cursor: auto;
-    }
+  &.selected {
+    color: #ff2d1e;
+    background-color: transparent;
+    border: 2px solid #a5a5a5;
+    cursor: auto;
+  }
 
+  &:disabled {
     color: #a5a5a5;
     background-color: transparent;
     border: 2px solid #a5a5a5;

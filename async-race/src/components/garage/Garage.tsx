@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { ICar } from '../../types/interfaces';
 import { GarageContext } from '../context/GarageContext';
 import Car from './Car';
@@ -6,22 +6,13 @@ import Car from './Car';
 interface IGarage {
   cars: ICar[];
   count: number;
-  currCar: ICar;
-  selectBtn: boolean;
-  addCurrCar: (car: ICar) => void;
-  updateState: () => void;
-  updateForm: (val: boolean) => void;
-  setSelectBtn: (val: boolean) => void;
+  fetchCars: () => void;
 }
 
 function Garage({
-  cars, count, currCar, selectBtn, setSelectBtn, addCurrCar, updateState, updateForm,
+  cars, count, fetchCars,
 }: IGarage) {
   const { garagePage } = useContext(GarageContext);
-
-  useEffect(() => {
-    updateState();
-  }, []);
 
   return (
     <div className="garage">
@@ -38,12 +29,7 @@ function Garage({
         { cars.map((car) => (
           <Car
             item={car}
-            currCar={currCar}
-            addCurrCar={addCurrCar}
-            updateState={updateState}
-            updateForm={updateForm}
-            selectBtn={selectBtn}
-            setSelectBtn={setSelectBtn}
+            fetchCars={fetchCars}
             key={car.id}
           />
         ))}

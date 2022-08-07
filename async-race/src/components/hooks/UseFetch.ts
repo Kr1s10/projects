@@ -4,7 +4,7 @@ import CarsServise from '../../utils/CarsServise';
 import { GarageContext } from '../context/GarageContext';
 
 function useFetchCars() {
-  const { garagePage, changeGaragePage } = useContext(GarageContext);
+  const { garagePage, setGaragePage } = useContext(GarageContext);
   const [cars, setCars] = useState<ICar[]>([]);
   const [count, setCount] = useState(0);
 
@@ -15,7 +15,7 @@ function useFetchCars() {
   };
 
   return {
-    cars, count, garagePage, changeGaragePage, fetchCars,
+    cars, count, garagePage, setGaragePage, fetchCars,
   };
 }
 

@@ -1,41 +1,42 @@
-import React, { useState } from 'react';
-import { ICar } from '../../types/interfaces';
+import React, { useContext, useEffect, useState } from 'react';
 import CarsServise from '../../utils/CarsServise';
+import { GarageContext } from '../context/GarageContext';
 
 interface IForm {
-  action: string;
-  disabled: boolean;
-  car: ICar;
-  selectBtn: boolean;
   updateState: () => void;
-  updateForm: (val: boolean) => void;
-  reset: () => void,
-  setSelectBtn: (val: boolean) => void;
 }
 
-function Form({
-  action, disabled, selectBtn, setSelectBtn, updateState, updateForm, reset, car = { name: '', color: '' },
-} : IForm) {
+function Form({ updateState } : IForm) {
+  const { currentCar, initStateCar, setCurrentCar } = useContext(GarageContext);
   const [nameInput, setNameInput] = useState('');
   const [colorInput, setColorInput] = useState('#ffffff');
 
-  const submitHandler = async (e: React.FormEvent) => {
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (action === 'create') {
-      await CarsServise.createCar({ name: nameInput, color: colorInput });
+    if (currentCar.id) {
+      await CarsServise.updateCar(currentCar.id as number, { name: nameInput, color: colorInput });
     } else {
-      await CarsServise.updateCar(car.id as number, { name: nameInput, color: colorInput });
+      await CarsServise.createCar({ name: nameInput, color: colorInput });
     }
-    updateForm(!disabled);
     updateState();
     setNameInput('');
     setColorInput('#ffffff');
-    reset();
-    setSelectBtn(false);
+    setCurrentCar(initStateCar);
   };
 
+  useEffect(() => {
+    if (currentCar.id) {
+      setNameInput(currentCar.name);
+      setColorInput(currentCar.color);
+    }
+  }, [currentCar]);
+
+  useEffect(() => {
+    setCurrentCar({ id: currentCar.id, name: nameInput, color: colorInput });
+  }, [nameInput, colorInput]);
+
   return (
-    <form className="form" id={action} onSubmit={submitHandler}>
+    <form className="form" onSubmit={submitHandler}>
       <input
         className="form__input"
         id="name"
@@ -43,8 +44,10 @@ function Form({
         placeholder="Name"
         autoComplete="off"
         value={nameInput}
-        disabled={disabled}
-        onChange={(e) => setNameInput(e.target.value)}
+        onChange={(e) => {
+          setNameInput(e.target.value);
+          // setCurrentCar({ id: currentCar.id, name: nameInput, color: currentCar.color });
+        }}
       />
       <input
         className="form__input"
@@ -52,15 +55,16 @@ function Form({
         type="color"
         value={colorInput}
         autoComplete="off"
-        disabled={disabled}
-        onInput={(e) => setColorInput((e.target as HTMLInputElement).value)}
+        onInput={(e) => {
+          setColorInput((e.target as HTMLInputElement).value);
+          // setCurrentCar({ id: currentCar.id, name: currentCar.name, color: colorInput });
+        }}
       />
       <button
         className="form__btn"
         type="submit"
-        disabled={disabled}
       >
-        {action}
+        {currentCar.id ? 'update' : 'create'}
       </button>
     </form>
   );

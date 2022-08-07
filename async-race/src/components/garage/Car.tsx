@@ -1,40 +1,35 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { ICar } from '../../types/interfaces';
 import CarsServise from '../../utils/CarsServise';
+import WinnersServise from '../../utils/WinnersServise';
+import { GarageContext } from '../context/GarageContext';
 import CarSvg from '../svg/CarSvg';
 
 interface ICarProps {
   item: ICar;
-  updateState: () => void;
-  currCar: ICar;
-  selectBtn: boolean;
-  addCurrCar: (car: ICar) => void;
-  updateForm: (val: boolean) => void;
-  setSelectBtn: (val: boolean) => void;
+  fetchCars: () => void;
 }
 
-function Car({
-  item, currCar, selectBtn, setSelectBtn, addCurrCar, updateState, updateForm,
-}: ICarProps) {
+function Car({ item, fetchCars }: ICarProps) {
+  const { currentCar, setCurrentCar } = useContext(GarageContext);
   const [removeBtn, setRemoveBtn] = useState(false);
 
   const removeCar = async () => {
     setRemoveBtn(true);
     await CarsServise.deleteCar(item.id as number);
-    updateState();
+    await WinnersServise.deleteWinner(item.id as number);
+    fetchCars();
     setRemoveBtn(false);
   };
 
   const changeCar = () => {
-    setSelectBtn(true);
-    updateForm(false);
-    addCurrCar(item);
+    setCurrentCar(item);
   };
 
   return (
     <li className="garage-list__item">
       <div className="car-controls">
-        <button className={`car-controls__btn ${item.id === currCar.id ? 'selected' : ''}`} id="select" type="button" onClick={changeCar} disabled={selectBtn}>select</button>
+        <button className={`car-controls__btn ${item.id === currentCar.id ? 'selected' : ''}`} id="select" type="button" onClick={changeCar}>select</button>
         <button className="car-controls__btn" id="remove" type="button" onClick={removeCar} disabled={removeBtn}>remove</button>
         <h3 className="car-title">{item.name}</h3>
       </div>

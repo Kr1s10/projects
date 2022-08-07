@@ -4,41 +4,30 @@ interface IPag {
   page: number,
   change: (value: number) => void,
   updateState: () => void,
-  count: number,
-  limit: number
+  limit: number,
+  length: number
 }
 
 function Pagination({
-  page, change, updateState, count, limit,
+  page, change, updateState, limit, length,
 }: IPag) {
-  const initPrev = page < 2;
-  const initNext = page > Math.ceil(count / limit);
-  const [prevDisabled, setPrevDisabled] = useState(initPrev);
-  const [nextDisabled, setNextDisabled] = useState(initNext);
+  const [prevDisabled, setPrevDisabled] = useState(true);
+  const [nextDisabled, setNextDisabled] = useState(true);
 
   const prevBtnHandler = () => {
     change(page - 1);
-    if (page < 2) {
-      setPrevDisabled(true);
-    } else {
-      setPrevDisabled(false);
-    }
     updateState();
   };
 
   const nextBtnHandler = () => {
     change(page + 1);
-    if (page >= Math.ceil(count / limit)) {
-      setNextDisabled(true);
-    } else {
-      setNextDisabled(false);
-    }
     updateState();
   };
 
-  // useEffect(() => {
-  //   updateState();
-  // }, []);
+  useEffect(() => {
+    setPrevDisabled(page < 2);
+    setNextDisabled((length < limit));
+  }, [length, limit, page]);
 
   return (
     <div className="pag">
@@ -51,7 +40,6 @@ function Pagination({
       >
         PREV
       </button>
-      <span>{page}</span>
       <button
         className="pag__btn"
         id="next"

@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import CarsServise from '../../utils/CarsServise';
 import generateRandomCars from '../helpers/GenerateRandomCars';
 
-function Controls({ updateState }: { updateState: () => void }) {
+interface IControls {
+  updateState: () => void;
+}
+
+function Controls({ updateState }: IControls) {
   const [generateBtn, setGenerateBtn] = useState(false);
 
   const generateCars = async () => {
