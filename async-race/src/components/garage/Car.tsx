@@ -1,20 +1,31 @@
-import React, { useContext, useState } from 'react';
-import { ICar } from '../../types/interfaces';
+import React, {
+  useContext, useEffect, useState,
+} from 'react';
+import { ICar, TWinner } from '../../types/interfaces';
 import CarsServise from '../../utils/CarsServise';
 import WinnersServise from '../../utils/WinnersServise';
 import { GarageContext } from '../context/GarageContext';
+import useEngine from '../hooks/UseEngine';
 import CarSvg from '../svg/CarSvg';
 
 interface ICarProps {
   item: ICar;
+  isFull: boolean;
   fetchCars: () => void;
+  setWinners: React.Dispatch<React.SetStateAction<TWinner[]>>;
 }
 
-function Car({ item, fetchCars }: ICarProps) {
+function Car({
+  item, isFull, fetchCars, setWinners,
+}: ICarProps) {
   const {
-    currentCar, setCurrentCar, setNameInput, setColorInput,
+    currentCar, setCurrentCar, setNameInput, setColorInput, isAllStarted,
   } = useContext(GarageContext);
+  const {
+    car, flag, startEngine, stopEngine,
+  } = useEngine(item.id!);
   const [removeBtn, setRemoveBtn] = useState(false);
+  const [isStarted, setIsStarted] = useState(false);
 
   const removeCar = async () => {
     setRemoveBtn(true);
@@ -30,6 +41,25 @@ function Car({ item, fetchCars }: ICarProps) {
     setColorInput(item.color);
   };
 
+  const startEngineHandler = async () => {
+    setIsStarted(true);
+    startEngine(setWinners);
+  };
+
+  const stopEngineHandler = async () => {
+    stopEngine();
+    setIsStarted(false);
+    if (isFull) setWinners([]);
+  };
+
+  useEffect(() => {
+    if (isAllStarted) {
+      startEngineHandler();
+    } else if (!isAllStarted) {
+      stopEngineHandler();
+    }
+  }, [isAllStarted]);
+
   return (
     <li className="garage-list__item">
       <div className="car-controls">
@@ -39,12 +69,14 @@ function Car({ item, fetchCars }: ICarProps) {
       </div>
       <div className="car-pad">
         <div className="engine-controls">
-          <button className="engine-controls__btn" id="start" type="button">A</button>
-          <button className="engine-controls__btn" id="stop" type="button">B</button>
+          <button className="engine-controls__btn" id="start" type="button" onClick={startEngineHandler} disabled={isStarted}>A</button>
+          <button className="engine-controls__btn" id="stop" type="button" onClick={stopEngineHandler} disabled={!isStarted}>B</button>
         </div>
         <div className="road">
-          <CarSvg color={item.color} />
-          <img className="flag" src="./flag.png" alt="flag" />
+          <div ref={car} className="car">
+            <CarSvg color={item.color} />
+          </div>
+          <img ref={flag} className="flag" src="./flag.png" alt="flag" />
         </div>
       </div>
     </li>

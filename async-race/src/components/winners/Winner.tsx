@@ -7,7 +7,9 @@ function Winner({ item, number }: { item: IWinnerWithCar, number: number }) {
     <tr>
       <td>{number}</td>
       <td className="car-ceil">
-        <CarSvg color={item.car.color} />
+        <div className="car">
+          <CarSvg color={item.car.color} />
+        </div>
       </td>
       <td>{item.car.name}</td>
       <td>{item.wins}</td>

@@ -10,6 +10,8 @@ export interface IQuery {
 export type TSort = 'id' | 'wins' | 'time';
 export type TOrder = 'ASC' | 'DESC';
 export type TStatus = 'started' | 'stopped' | 'drive';
+export type TWinner = { id: number, winsTime: number };
+export type TCallbackWins = ({ id, winsTime }: TWinner) => void;
 
 export interface ICar {
   id?: number;

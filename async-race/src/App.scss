@@ -269,6 +269,28 @@ $font: 'Rajdhani', sans-serif;
   border-bottom: 2px dashed #ddd;
 }
 
+.message-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message {
+  width: 20%;
+  color: #313131;
+  font-size: 30px;
+  padding: 20px;
+  background-color: #a5a5a5;
+  border-radius: 20px;
+}
+
 .car {
   height: 57px;
   width: 90px;

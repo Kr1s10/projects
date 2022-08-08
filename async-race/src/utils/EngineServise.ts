@@ -7,7 +7,9 @@ class EngineServise {
 
   public static engine = async (id: number, status: TStatus) => {
     const url = makeURLwithQuery(EngineServise.URL, { id, status });
-    const res = await fetch(url.href);
+    const res = await fetch(url.href, {
+      method: 'PATCH',
+    });
 
     return status === 'drive' && res.status !== 200
       ? { success: false }
