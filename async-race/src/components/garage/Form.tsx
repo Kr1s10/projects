@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import CarsServise from '../../utils/CarsServise';
 import { GarageContext } from '../context/GarageContext';
 
@@ -7,33 +7,29 @@ interface IForm {
 }
 
 function Form({ updateState } : IForm) {
-  const { currentCar, initStateCar, setCurrentCar } = useContext(GarageContext);
-  const [nameInput, setNameInput] = useState('');
-  const [colorInput, setColorInput] = useState('#ffffff');
+  const {
+    currentCar, setCurrentCar, nameInput, setNameInput, colorInput, setColorInput,
+  } = useContext(GarageContext);
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (currentCar.id) {
-      await CarsServise.updateCar(currentCar.id as number, { name: nameInput, color: colorInput });
+    if (currentCar) {
+      await CarsServise.updateCar(currentCar as number, { name: nameInput, color: colorInput });
     } else {
       await CarsServise.createCar({ name: nameInput, color: colorInput });
     }
     updateState();
     setNameInput('');
     setColorInput('#ffffff');
-    setCurrentCar(initStateCar);
+    setCurrentCar(0);
   };
 
   useEffect(() => {
-    if (currentCar.id) {
-      setNameInput(currentCar.name);
-      setColorInput(currentCar.color);
+    if (currentCar) {
+      setNameInput(nameInput);
+      setColorInput(colorInput);
     }
   }, [currentCar]);
-
-  useEffect(() => {
-    setCurrentCar({ id: currentCar.id, name: nameInput, color: colorInput });
-  }, [nameInput, colorInput]);
 
   return (
     <form className="form" onSubmit={submitHandler}>
@@ -44,10 +40,7 @@ function Form({ updateState } : IForm) {
         placeholder="Name"
         autoComplete="off"
         value={nameInput}
-        onChange={(e) => {
-          setNameInput(e.target.value);
-          // setCurrentCar({ id: currentCar.id, name: nameInput, color: currentCar.color });
-        }}
+        onChange={(e) => setNameInput(e.target.value)}
       />
       <input
         className="form__input"
@@ -55,16 +48,13 @@ function Form({ updateState } : IForm) {
         type="color"
         value={colorInput}
         autoComplete="off"
-        onInput={(e) => {
-          setColorInput((e.target as HTMLInputElement).value);
-          // setCurrentCar({ id: currentCar.id, name: currentCar.name, color: colorInput });
-        }}
+        onInput={(e) => setColorInput((e.target as HTMLInputElement).value)}
       />
       <button
         className="form__btn"
         type="submit"
       >
-        {currentCar.id ? 'update' : 'create'}
+        {currentCar ? 'update' : 'create'}
       </button>
     </form>
   );

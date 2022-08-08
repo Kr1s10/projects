@@ -11,7 +11,9 @@ interface ICarProps {
 }
 
 function Car({ item, fetchCars }: ICarProps) {
-  const { currentCar, setCurrentCar } = useContext(GarageContext);
+  const {
+    currentCar, setCurrentCar, setNameInput, setColorInput,
+  } = useContext(GarageContext);
   const [removeBtn, setRemoveBtn] = useState(false);
 
   const removeCar = async () => {
@@ -23,13 +25,15 @@ function Car({ item, fetchCars }: ICarProps) {
   };
 
   const changeCar = () => {
-    setCurrentCar(item);
+    setCurrentCar(item.id!);
+    setNameInput(item.name);
+    setColorInput(item.color);
   };
 
   return (
     <li className="garage-list__item">
       <div className="car-controls">
-        <button className={`car-controls__btn ${item.id === currentCar.id ? 'selected' : ''}`} id="select" type="button" onClick={changeCar}>select</button>
+        <button className={`car-controls__btn ${item.id === currentCar ? 'selected' : ''}`} id="select" type="button" onClick={changeCar}>select</button>
         <button className="car-controls__btn" id="remove" type="button" onClick={removeCar} disabled={removeBtn}>remove</button>
         <h3 className="car-title">{item.name}</h3>
       </div>
