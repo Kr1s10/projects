@@ -1,3 +1,5 @@
+import { Order, Sort, StatusEngine } from './constants';
+
 export interface IQuery {
   _page?: number;
   _limit?: number;
@@ -7,9 +9,9 @@ export interface IQuery {
   status?: TStatus;
 }
 
-export type TSort = 'id' | 'wins' | 'time';
-export type TOrder = 'ASC' | 'DESC';
-export type TStatus = 'started' | 'stopped' | 'drive';
+export type TSort = Sort.id | Sort.wins | Sort.time;
+export type TOrder = Order.ASC | Order.DESC;
+export type TStatus = StatusEngine.started | StatusEngine.stopped | StatusEngine.drive;
 export type TWinner = { id: number, winsTime: number };
 export type TCallbackWins = ({ id, winsTime }: TWinner) => void;
 

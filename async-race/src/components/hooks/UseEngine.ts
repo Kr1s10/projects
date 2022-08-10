@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { carStartPosition, StatusEngine } from '../../types/constants';
 import { TWinner } from '../../types/interfaces';
 import EngineServise from '../../utils/EngineServise';
 import getDistanceBtwnElements from '../helpers/Animation';
@@ -32,11 +33,11 @@ function useEngine(id:number) {
   }
 
   const startEngine = async (setWinner: React.Dispatch<React.SetStateAction<TWinner[]>>) => {
-    const { velocity, distance } = await EngineServise.engine(id, 'started');
+    const { velocity, distance } = await EngineServise.engine(id, StatusEngine.started);
     const time = Math.round(distance / velocity);
     const htmlDistance = Math.floor(getDistanceBtwnElements(car.current!, flag.current!) + 80);
     animation(car.current!, htmlDistance, time);
-    const { success } = await EngineServise.engine(id, 'drive');
+    const { success } = await EngineServise.engine(id, StatusEngine.drive);
     if (!success) {
       cancelAnimationFrame(animId.current);
     } else {
@@ -49,10 +50,10 @@ function useEngine(id:number) {
   };
 
   const stopEngine = async () => {
-    await EngineServise.engine(id, 'stopped');
+    await EngineServise.engine(id, StatusEngine.stopped);
     cancelAnimationFrame(animId.current);
     if (car.current) {
-      (car.current! as HTMLElement).style.transform = 'translateX(0)';
+      (car.current! as HTMLElement).style.transform = carStartPosition;
     }
   };
 

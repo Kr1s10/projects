@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { FormText, inputDefaultColor } from '../../types/constants';
 import CarsServise from '../../utils/CarsServise';
 import { GarageContext } from '../context/GarageContext';
 
@@ -20,7 +21,7 @@ function Form({ updateState } : IForm) {
     }
     updateState();
     setNameInput('');
-    setColorInput('#ffffff');
+    setColorInput(inputDefaultColor);
     setCurrentCar(0);
   };
 
@@ -54,7 +55,7 @@ function Form({ updateState } : IForm) {
         className="form__btn"
         type="submit"
       >
-        {currentCar ? 'update' : 'create'}
+        {currentCar ? FormText.update : FormText.create}
       </button>
     </form>
   );

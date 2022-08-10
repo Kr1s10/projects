@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { GarageContext } from '../components/context/GarageContext';
 import Pagination from '../components/Pagination';
 import Table from '../components/winners/WinnersTable';
+import { Limit } from '../types/constants';
 import { IWinnerWithCar } from '../types/interfaces';
 import WinnersServise from '../utils/WinnersServise';
 
@@ -35,7 +36,7 @@ function WinnersPage() {
         page={winnersPage}
         change={setWinnersPage}
         updateState={fetchWinners}
-        limit={10}
+        limit={Limit.winners}
         length={winners.length}
       />
     </main>

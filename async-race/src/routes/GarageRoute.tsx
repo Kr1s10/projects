@@ -4,6 +4,7 @@ import Controls from '../components/garage/Controls';
 import Form from '../components/garage/Form';
 import Garage from '../components/garage/Garage';
 import Pagination from '../components/Pagination';
+import { Limit } from '../types/constants';
 import { ICar } from '../types/interfaces';
 import CarsServise from '../utils/CarsServise';
 
@@ -37,7 +38,7 @@ function GaragePage() {
         page={garagePage}
         change={setGaragePage}
         updateState={fetchCars}
-        limit={7}
+        limit={Limit.garage}
         length={cars.length}
       />
     </main>

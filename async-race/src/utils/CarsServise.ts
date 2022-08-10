@@ -1,41 +1,39 @@
-import { BASE_URL } from '../types/constants';
+import {
+  BASE_URL, headers, Limit, Method, Page, totalCountHeader,
+} from '../types/constants';
 import { ICar } from '../types/interfaces';
 import makeURLwithQuery from '../components/helpers/MakeURLwithQuery';
 
 class CarsServise {
-  private static URL = new URL('garage', BASE_URL);
+  private static URL = new URL(Page.garage, BASE_URL);
 
-  public static getCars = async (page: number, limit = 7) => {
-    const url = makeURLwithQuery(CarsServise.URL, { _page: page, _limit: limit });
+  public static getCars = async (page: number, limit = Limit.garage) => {
+    const url = makeURLwithQuery(this.URL, { _page: page, _limit: limit });
     const res = await fetch(url.href);
     const data: ICar[] = await res.json();
 
     return {
       data,
-      totalCount: Number(res.headers.get('X-Total-Count')),
+      totalCount: Number(res.headers.get(totalCountHeader)),
     };
   };
 
-  public static getCar = async (id: number) => (await fetch(`${CarsServise.URL}/${id}`)).json();
+  public static getCar = async (id: number) => (await fetch(`${this.URL}/${id}`)).json();
 
-  public static createCar = async (body: ICar) => (await fetch(CarsServise.URL, {
-    method: 'POST',
+  public static createCar = async (body: ICar) => (await fetch(this.URL, {
+    method: Method.POST,
     body: JSON.stringify(body),
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers,
   })).json();
 
-  public static updateCar = async (id: number, body: ICar) => (await fetch(`${CarsServise.URL}/${id}`, {
-    method: 'PUT',
+  public static updateCar = async (id: number, body: ICar) => (await fetch(`${this.URL}/${id}`, {
+    method: Method.PUT,
     body: JSON.stringify(body),
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers,
   })).json();
 
-  public static deleteCar = async (id: number) => (await fetch(`${CarsServise.URL}/${id}`, {
-    method: 'DELETE',
+  public static deleteCar = async (id: number) => (await fetch(`${this.URL}/${id}`, {
+    method: Method.DELETE,
   })).json();
 }
 

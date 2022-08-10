@@ -1,4 +1,5 @@
 import React, { Dispatch, useMemo, useState } from 'react';
+import { inputDefaultColor } from '../../types/constants';
 import { TWinner } from '../../types/interfaces';
 
 interface IGarage {
@@ -41,7 +42,7 @@ export function GarageState({ children }: { children: React.ReactNode }) {
   const [winners, setWinners] = useState<TWinner[]>([]);
   const [currentCar, setCurrentCar] = useState(0);
   const [nameInput, setNameInput] = useState('');
-  const [colorInput, setColorInput] = useState('#ffffff');
+  const [colorInput, setColorInput] = useState(inputDefaultColor);
   const [isAllStarted, setIsAllStarted] = useState(false);
 
   const context = {

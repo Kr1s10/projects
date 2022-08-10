@@ -1,6 +1,7 @@
 import React, {
   useContext, useEffect, useState,
 } from 'react';
+import { selectedClass } from '../../types/constants';
 import { ICar, TWinner } from '../../types/interfaces';
 import CarsServise from '../../utils/CarsServise';
 import WinnersServise from '../../utils/WinnersServise';
@@ -18,27 +19,28 @@ interface ICarProps {
 function Car({
   item, isFull, fetchCars, setWinners,
 }: ICarProps) {
+  const { id, name, color } = item;
   const {
     currentCar, setCurrentCar, setNameInput, setColorInput, isAllStarted,
   } = useContext(GarageContext);
   const {
     car, flag, startEngine, stopEngine,
-  } = useEngine(item.id!);
+  } = useEngine(id!);
   const [removeBtn, setRemoveBtn] = useState(false);
   const [isStarted, setIsStarted] = useState(false);
 
   const removeCar = async () => {
     setRemoveBtn(true);
-    await CarsServise.deleteCar(item.id as number);
-    await WinnersServise.deleteWinner(item.id as number);
+    await CarsServise.deleteCar(id as number);
+    await WinnersServise.deleteWinner(id as number);
     fetchCars();
     setRemoveBtn(false);
   };
 
   const changeCar = () => {
-    setCurrentCar(item.id!);
-    setNameInput(item.name);
-    setColorInput(item.color);
+    setCurrentCar(id!);
+    setNameInput(name);
+    setColorInput(color);
   };
 
   const startEngineHandler = async () => {
@@ -63,9 +65,9 @@ function Car({
   return (
     <li className="garage-list__item">
       <div className="car-controls">
-        <button className={`car-controls__btn ${item.id === currentCar ? 'selected' : ''}`} id="select" type="button" onClick={changeCar}>select</button>
+        <button className={`car-controls__btn ${id === currentCar ? selectedClass : ''}`} id="select" type="button" onClick={changeCar}>select</button>
         <button className="car-controls__btn" id="remove" type="button" onClick={removeCar} disabled={removeBtn}>remove</button>
-        <h3 className="car-title">{item.name}</h3>
+        <h3 className="car-title">{name}</h3>
       </div>
       <div className="car-pad">
         <div className="engine-controls">
@@ -74,7 +76,7 @@ function Car({
         </div>
         <div className="road">
           <div ref={car} className="car">
-            <CarSvg color={item.color} />
+            <CarSvg color={color} />
           </div>
           <img ref={flag} className="flag" src="./flag.png" alt="flag" />
         </div>
