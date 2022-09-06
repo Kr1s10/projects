@@ -1,10 +1,7 @@
 import React from 'react';
+import { ICarSvgProps } from '../../types/interfaces';
 
-interface ICarSvg {
-  color: string;
-}
-
-function CarSvg({ color }: ICarSvg) {
+export default function CarSvg({ color }: ICarSvgProps) {
   return (
     <svg
       version="1.0"
@@ -66,5 +63,3 @@ c-27 -69 -73 -125 -117 -143 -43 -18 -956 -28 -1514 -17 -387 8 -418 10 -460
     </svg>
   );
 }
-
-export default CarSvg;

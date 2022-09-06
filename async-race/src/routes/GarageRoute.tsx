@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { GarageContext } from '../components/context/GarageContext';
+import { GarageContext } from '../context/GarageContext';
 import Controls from '../components/garage/Controls';
 import Form from '../components/garage/Form';
 import Garage from '../components/garage/Garage';
-import Pagination from '../components/Pagination';
+import Pagination from '../components/pagination';
 import { Limit } from '../types/constants';
-import { ICar } from '../types/interfaces';
-import CarsServise from '../utils/CarsServise';
+import { ICar, IGarage } from '../types/interfaces';
+import CarsServise from '../utils/CarsService';
 
-function GaragePage() {
-  const { garagePage, setGaragePage } = useContext(GarageContext);
+export default function GaragePage() {
+  const { garagePage, setGaragePage } = useContext(GarageContext) as IGarage;
   const [cars, setCars] = useState<ICar[]>([]);
   const [count, setCount] = useState(0);
 
@@ -44,5 +44,3 @@ function GaragePage() {
     </main>
   );
 }
-
-export default GaragePage;

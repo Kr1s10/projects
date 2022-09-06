@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.scss';
 import { Routes, Route } from 'react-router-dom';
-import Navigation from './components/Navigation';
+import Navigation from './components/navigation';
 import GaragePage from './routes/GarageRoute';
 import WinnersPage from './routes/WinnersRoute';
-import Footer from './components/Footer';
+import Footer from './components/footer';
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <Navigation />
@@ -18,5 +18,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

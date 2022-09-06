@@ -1,23 +1,20 @@
 import React, { useContext, useEffect } from 'react';
 import { FormText, inputDefaultColor } from '../../types/constants';
-import CarsServise from '../../utils/CarsServise';
-import { GarageContext } from '../context/GarageContext';
+import CarsServise from '../../utils/CarsService';
+import { GarageContext } from '../../context/GarageContext';
+import { IFormProps, IGarage } from '../../types/interfaces';
 
-interface IForm {
-  updateState: () => void;
-}
-
-function Form({ updateState } : IForm) {
+export default function Form({ updateState } : IFormProps) {
   const {
-    currentCar, setCurrentCar, nameInput, setNameInput, colorInput, setColorInput,
-  } = useContext(GarageContext);
+    currentCar, setCurrentCar, nameInput: name, setNameInput, colorInput: color, setColorInput,
+  } = useContext(GarageContext) as IGarage;
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (currentCar) {
-      await CarsServise.updateCar(currentCar as number, { name: nameInput, color: colorInput });
+      await CarsServise.updateCar(currentCar, { name, color });
     } else {
-      await CarsServise.createCar({ name: nameInput, color: colorInput });
+      await CarsServise.createCar({ name, color });
     }
     updateState();
     setNameInput('');
@@ -25,12 +22,20 @@ function Form({ updateState } : IForm) {
     setCurrentCar(0);
   };
 
+  const inputNameHandler = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
+    setNameInput(value);
+  };
+
+  const inputColorHandler = (e: React.FormEvent<HTMLInputElement>) => {
+    setColorInput((e.target as HTMLInputElement).value);
+  };
+
   useEffect(() => {
     if (currentCar) {
-      setNameInput(nameInput);
-      setColorInput(colorInput);
+      setNameInput(name);
+      setColorInput(color);
     }
-  }, [currentCar]);
+  }, [currentCar, name, color]);
 
   return (
     <form className="form" onSubmit={submitHandler}>
@@ -40,16 +45,16 @@ function Form({ updateState } : IForm) {
         type="text"
         placeholder="Name"
         autoComplete="off"
-        value={nameInput}
-        onChange={(e) => setNameInput(e.target.value)}
+        value={name}
+        onChange={inputNameHandler}
       />
       <input
         className="form__input"
         id="color"
         type="color"
-        value={colorInput}
+        value={color}
         autoComplete="off"
-        onInput={(e) => setColorInput((e.target as HTMLInputElement).value)}
+        onInput={inputColorHandler}
       />
       <button
         className="form__btn"
@@ -60,5 +65,3 @@ function Form({ updateState } : IForm) {
     </form>
   );
 }
-
-export default Form;

@@ -4,10 +4,10 @@ import {
 import {
   IWinner, ICar, TOrder, TSort,
 } from '../types/interfaces';
-import CarsServise from './CarsServise';
-import makeURLwithQuery from '../components/helpers/MakeURLwithQuery';
+import CarsServise from './CarsService';
+import makeURLwithQuery from '../helpers/MakeURLwithQuery';
 
-class WinnersServise {
+export default class WinnersService {
   private static URL = new URL(Page.winners, BASE_URL);
 
   public static getWinners = async (
@@ -73,5 +73,3 @@ class WinnersServise {
     }
   };
 }
-
-export default WinnersServise;

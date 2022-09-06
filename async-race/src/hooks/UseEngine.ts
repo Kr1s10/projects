@@ -1,7 +1,7 @@
 import { useRef } from 'react';
-import { carStartPosition, StatusEngine } from '../../types/constants';
-import { TWinner } from '../../types/interfaces';
-import EngineServise from '../../utils/EngineServise';
+import { carStartPosition, indentOfFlag, StatusEngine } from '../types/constants';
+import { TWinner } from '../types/interfaces';
+import EngineServise from '../utils/EngineService';
 import getDistanceBtwnElements from '../helpers/Animation';
 
 function useEngine(id:number) {
@@ -35,8 +35,9 @@ function useEngine(id:number) {
   const startEngine = async (setWinner: React.Dispatch<React.SetStateAction<TWinner[]>>) => {
     const { velocity, distance } = await EngineServise.engine(id, StatusEngine.started);
     const time = Math.round(distance / velocity);
-    const htmlDistance = Math.floor(getDistanceBtwnElements(car.current!, flag.current!) + 80);
-    animation(car.current!, htmlDistance, time);
+    const htmlDistance = getDistanceBtwnElements(car.current!, flag.current!);
+    const htmlDistanceWithIndent = Math.floor(htmlDistance + indentOfFlag);
+    animation(car.current!, htmlDistanceWithIndent, time);
     const { success } = await EngineServise.engine(id, StatusEngine.drive);
     if (!success) {
       cancelAnimationFrame(animId.current);

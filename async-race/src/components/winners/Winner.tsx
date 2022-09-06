@@ -1,9 +1,8 @@
 import React from 'react';
-import { IWinnerWithCar } from '../../types/interfaces';
-import CarSvg from '../svg/CarSvg';
+import { IWinnerProps } from '../../types/interfaces';
+import CarSvg from '../../assets/svg/CarSvg';
 
-function Winner({ item, number }: { item: IWinnerWithCar, number: number }) {
-  const { car, wins, time } = item;
+export default function Winner({ item: { car, wins, time }, number }: IWinnerProps) {
   return (
     <tr>
       <td>{number}</td>
@@ -18,5 +17,3 @@ function Winner({ item, number }: { item: IWinnerWithCar, number: number }) {
     </tr>
   );
 }
-
-export default Winner;

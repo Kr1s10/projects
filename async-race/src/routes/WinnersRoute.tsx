@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { GarageContext } from '../components/context/GarageContext';
-import Pagination from '../components/Pagination';
+import { GarageContext } from '../context/GarageContext';
+import Pagination from '../components/pagination';
 import Table from '../components/winners/WinnersTable';
 import { Limit } from '../types/constants';
-import { IWinnerWithCar } from '../types/interfaces';
-import WinnersServise from '../utils/WinnersServise';
+import { IGarage, IWinnerWithCar } from '../types/interfaces';
+import WinnersServise from '../utils/WinnersService';
 
-function WinnersPage() {
-  const { winnersPage, setWinnersPage } = useContext(GarageContext);
+export default function WinnersPage() {
+  const { winnersPage, setWinnersPage } = useContext(GarageContext) as IGarage;
   const [winners, setWinners] = useState<IWinnerWithCar[]>([]);
   const [count, setCount] = useState(0);
 
@@ -42,5 +42,3 @@ function WinnersPage() {
     </main>
   );
 }
-
-export default WinnersPage;

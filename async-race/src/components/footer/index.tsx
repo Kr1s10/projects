@@ -1,8 +1,8 @@
 import React from 'react';
-import GhLogo from './svg/GhLogo';
-import RSSchoolLogo from './svg/RSSchoolLogo';
+import GhLogo from '../../assets/svg/GhLogo';
+import RSSchoolLogo from '../../assets/svg/RSSchoolLogo';
 
-function Footer() {
+export default function Footer() {
   return (
     <footer className="footer">
       <div className="wrapper">
@@ -17,5 +17,3 @@ function Footer() {
     </footer>
   );
 }
-
-export default Footer;

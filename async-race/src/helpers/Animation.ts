@@ -8,11 +8,9 @@ function getPositionAtCenter(el: HTMLElement) {
   };
 }
 
-function getDistanceBtwnElements(a: HTMLElement, b: HTMLElement) {
+export default function getDistanceBtwnElements(a: HTMLElement, b: HTMLElement) {
   const posA = getPositionAtCenter(a);
   const posB = getPositionAtCenter(b);
 
   return Math.hypot(posA.x - posB.x, posA.y - posB.y);
 }
-
-export default getDistanceBtwnElements;

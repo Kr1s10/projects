@@ -2,9 +2,9 @@ import {
   BASE_URL, headers, Limit, Method, Page, totalCountHeader,
 } from '../types/constants';
 import { ICar } from '../types/interfaces';
-import makeURLwithQuery from '../components/helpers/MakeURLwithQuery';
+import makeURLwithQuery from '../helpers/MakeURLwithQuery';
 
-class CarsServise {
+export default class CarsService {
   private static URL = new URL(Page.garage, BASE_URL);
 
   public static getCars = async (page: number, limit = Limit.garage) => {
@@ -36,5 +36,3 @@ class CarsServise {
     method: Method.DELETE,
   })).json();
 }
-
-export default CarsServise;

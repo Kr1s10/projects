@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { IPaginationProps } from '../../types/interfaces';
 
-interface IPag {
-  page: number,
-  change: (value: number) => void,
-  updateState: () => void,
-  limit: number,
-  length: number
-}
-
-function Pagination({
+export default function Pagination({
   page, change, updateState, limit, length,
-}: IPag) {
+}: IPaginationProps) {
   const [prevDisabled, setPrevDisabled] = useState(true);
   const [nextDisabled, setNextDisabled] = useState(true);
 
@@ -52,5 +45,3 @@ function Pagination({
     </div>
   );
 }
-
-export default Pagination;

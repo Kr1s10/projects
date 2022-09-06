@@ -6,6 +6,10 @@ export const totalCountHeader = 'X-Total-Count';
 export const carStartPosition = 'translateX(0)';
 export const inputDefaultColor = '#ffffff';
 export const selectedClass = 'selected';
+export const milliseconds = 1000;
+export const indentOfFlag = 80;
+export const numberOfRandomCars = 100;
+export const lengthOfColor = 6;
 
 export enum FormText {
   create = 'create',
