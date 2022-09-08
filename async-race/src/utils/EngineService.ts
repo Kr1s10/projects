@@ -2,9 +2,9 @@ import {
   BASE_URL, HTTPStatusCodes, Method, Page, StatusEngine,
 } from '../types/constants';
 import { TStatus } from '../types/interfaces';
-import makeURLwithQuery from '../components/helpers/MakeURLwithQuery';
+import makeURLwithQuery from '../helpers/MakeURLwithQuery';
 
-class EngineServise {
+export default class EngineService {
   private static URL = new URL(Page.engine, BASE_URL);
 
   public static engine = async (id: number, status: TStatus) => {
@@ -18,5 +18,3 @@ class EngineServise {
       : { ...(await res.json()) };
   };
 }
-
-export default EngineServise;

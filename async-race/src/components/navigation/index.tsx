@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Page } from '../types/constants';
+import { Page } from '../../types/constants';
 
-function Navigation() {
+export default function Navigation() {
   return (
     <header className="wrapper header">
       <nav className="nav">
@@ -16,5 +16,3 @@ function Navigation() {
     </header>
   );
 }
-
-export default Navigation;

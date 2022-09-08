@@ -1,15 +1,12 @@
 import React, { useContext, useState } from 'react';
-import CarsServise from '../../utils/CarsServise';
-import { GarageContext } from '../context/GarageContext';
-import generateRandomCars from '../helpers/GenerateRandomCars';
+import { IControlsProps, IGarage } from '../../types/interfaces';
+import CarsServise from '../../utils/CarsService';
+import { GarageContext } from '../../context/GarageContext';
+import generateRandomCars from '../../helpers/GenerateRandomCars';
 
-interface IControls {
-  updateState: () => void;
-}
-
-function Controls({ updateState }: IControls) {
+export default function Controls({ updateState }: IControlsProps) {
   const [generateBtn, setGenerateBtn] = useState(false);
-  const { isAllStarted, setIsAllStarted } = useContext(GarageContext);
+  const { isAllStarted, setIsAllStarted } = useContext(GarageContext) as IGarage;
 
   const generateCars = async () => {
     setGenerateBtn(true);
@@ -35,5 +32,3 @@ function Controls({ updateState }: IControls) {
     </div>
   );
 }
-
-export default Controls;

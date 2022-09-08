@@ -2,43 +2,36 @@ import React, {
   useContext, useEffect, useState,
 } from 'react';
 import { selectedClass } from '../../types/constants';
-import { ICar, TWinner } from '../../types/interfaces';
-import CarsServise from '../../utils/CarsServise';
-import WinnersServise from '../../utils/WinnersServise';
-import { GarageContext } from '../context/GarageContext';
-import useEngine from '../hooks/UseEngine';
-import CarSvg from '../svg/CarSvg';
+import { ICarProps, IGarage } from '../../types/interfaces';
+import CarsServise from '../../utils/CarsService';
+import WinnersServise from '../../utils/WinnersService';
+import { GarageContext } from '../../context/GarageContext';
+import useEngine from '../../hooks/UseEngine';
+import CarSvg from '../../assets/svg/CarSvg';
 
-interface ICarProps {
-  item: ICar;
-  isFull: boolean;
-  fetchCars: () => void;
-  setWinners: React.Dispatch<React.SetStateAction<TWinner[]>>;
-}
-
-function Car({
-  item, isFull, fetchCars, setWinners,
+export default function Car({
+  item: { id, name, color }, isFull, fetchCars, setWinners,
 }: ICarProps) {
-  const { id, name, color } = item;
+  const carId = id as number;
   const {
     currentCar, setCurrentCar, setNameInput, setColorInput, isAllStarted,
-  } = useContext(GarageContext);
+  } = useContext(GarageContext) as IGarage;
   const {
     car, flag, startEngine, stopEngine,
-  } = useEngine(id!);
+  } = useEngine(carId);
   const [removeBtn, setRemoveBtn] = useState(false);
   const [isStarted, setIsStarted] = useState(false);
 
   const removeCar = async () => {
     setRemoveBtn(true);
-    await CarsServise.deleteCar(id as number);
-    await WinnersServise.deleteWinner(id as number);
+    await CarsServise.deleteCar(carId);
+    await WinnersServise.deleteWinner(carId);
     fetchCars();
     setRemoveBtn(false);
   };
 
   const changeCar = () => {
-    setCurrentCar(id!);
+    setCurrentCar(carId);
     setNameInput(name);
     setColorInput(color);
   };
@@ -57,9 +50,10 @@ function Car({
   useEffect(() => {
     if (isAllStarted) {
       startEngineHandler();
-    } else if (!isAllStarted) {
-      stopEngineHandler();
+      return;
     }
+
+    stopEngineHandler();
   }, [isAllStarted]);
 
   return (
@@ -84,5 +78,3 @@ function Car({
     </li>
   );
 }
-
-export default Car;

@@ -1,8 +1,8 @@
 import React from 'react';
-import { IWinnerWithCar } from '../../types/interfaces';
+import { IWinnersTableProps } from '../../types/interfaces';
 import Winner from './Winner';
 
-function Table({ data }: { data: IWinnerWithCar[] }) {
+export default function WinnersTable({ data }: IWinnersTableProps) {
   return (
     <table className="table">
       <thead>
@@ -20,5 +20,3 @@ function Table({ data }: { data: IWinnerWithCar[] }) {
     </table>
   );
 }
-
-export default Table;

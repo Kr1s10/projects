@@ -1,40 +1,36 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { ICar, TWinner } from '../../types/interfaces';
-import CarsServise from '../../utils/CarsServise';
-import { GarageContext } from '../context/GarageContext';
+import { milliseconds } from '../../types/constants';
+import { IGarage, IGarageProps, TWinner } from '../../types/interfaces';
+import CarsServise from '../../utils/CarsService';
+import { GarageContext } from '../../context/GarageContext';
 import Car from './Car';
 
-interface IGarage {
-  cars: ICar[];
-  count: number;
-  fetchCars: () => void;
-}
-
-function Garage({
+export default function Garage({
   cars, count, fetchCars,
-}: IGarage) {
-  const { garagePage } = useContext(GarageContext);
+}: IGarageProps) {
+  const { garagePage } = useContext(GarageContext) as IGarage;
   const [isFull, setIsFull] = useState(false);
   const [winners, setWinners] = useState<TWinner[]>([]);
   const [winner, setWinner] = useState<TWinner>();
   const [modal, setModal] = useState(false);
 
   const getWinner = async () => {
-    const winCar = await CarsServise.getCar(winners[0].id);
-    setWinner({
-      id: winCar.name,
-      winsTime: winners[0].winsTime,
-    });
+    const currentWinner = winners[0];
+    const { id, winsTime } = currentWinner;
+    const { name } = await CarsServise.getCar(id);
+    setWinner({ id: name, winsTime });
   };
+
+  const closeModal = () => setModal(false);
 
   useEffect(() => {
     if (winners.length) {
       setIsFull(true);
-      if (winners.length === 1) {
-        getWinner();
-        setModal(true);
-      }
-    } else setIsFull(false);
+      getWinner();
+      setModal(true);
+    }
+
+    setIsFull(false);
   }, [winners]);
 
   return (
@@ -62,18 +58,12 @@ function Garage({
       {modal && (
       /*  eslint-disable-next-line jsx-a11y/click-events-have-key-events,
       jsx-a11y/no-static-element-interactions */
-      <div className="message-wrapper" onClick={() => setModal(false)}>
+      <div className="message-wrapper" onClick={closeModal}>
         <p className="message">
-          {winner?.id}
-          {' '}
-          went first [
-          {((winner?.winsTime as number) / 1000).toFixed(2)}
-          s]
+          {winner && `${winner.id} went first [${(winner.winsTime / milliseconds).toFixed(2)}s]`}
         </p>
       </div>
       )}
     </div>
   );
 }
-
-export default Garage;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function RSSchoolLogo() {
+export default function RSSchoolLogo() {
   return (
     <svg className="rs-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 552.85 198.67">
       <g data-name="Layer 2">
@@ -13,5 +13,3 @@ function RSSchoolLogo() {
     </svg>
   );
 }
-
-export default RSSchoolLogo;

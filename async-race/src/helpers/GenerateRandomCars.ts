@@ -1,4 +1,6 @@
-import { colorAlph, models, names } from '../../types/constants';
+import {
+  colorAlph, lengthOfColor, models, names, numberOfRandomCars,
+} from '../types/constants';
 
 function getRandomName() {
   const model = models[Math.floor(Math.random() * models.length)];
@@ -8,12 +10,12 @@ function getRandomName() {
 
 function getRandomColor() {
   let color = '#';
-  for (let i = 0; i < 6; i += 1) {
+  for (let i = 0; i < lengthOfColor; i += 1) {
     color += colorAlph[Math.floor(Math.random() * colorAlph.length)];
   }
   return color;
 }
 
-export default function generateRandomCars(count = 100) {
+export default function generateRandomCars(count = numberOfRandomCars) {
   return new Array(count).fill(1).map(() => ({ name: getRandomName(), color: getRandomColor() }));
 }
